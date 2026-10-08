@@ -46,6 +46,7 @@
   --shadow:0 1px 2px rgba(32,30,46,.05),0 6px 20px rgba(32,30,46,.07);
 }
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);font-family:var(--font);color:var(--text);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
 a{color:var(--link)}
@@ -591,11 +592,11 @@ tr:last-child td{border-bottom:0}
 .modal p{font-size:15px;color:var(--muted)}
 .modal p b{color:var(--text)}
 .modal fieldset{border:0;margin:0;padding:0;display:grid;gap:8px}
-.modal label{display:grid;grid-template-columns:20px 1fr;gap:12px;align-items:start;padding:12px 14px;border:1px solid var(--line-2);border-radius:10px;cursor:pointer}
-.modal label:hover{border-color:var(--primary)}
+.modal fieldset label{display:grid;grid-template-columns:20px 1fr;gap:12px;align-items:start;padding:12px 14px;border:1px solid var(--line-2);border-radius:10px;cursor:pointer}
+.modal fieldset label:hover{border-color:var(--primary)}
 .modal input[type=checkbox]{width:18px;height:18px;margin:2px 0 0;accent-color:var(--primary)}
-.modal label span{display:grid;gap:2px;font-size:14.5px}
-.modal label small{font-size:12.5px;color:var(--muted)}
+.modal fieldset label span{display:grid;gap:2px;font-size:14.5px}
+.modal fieldset label small{font-size:12.5px;color:var(--muted)}
 .modal .mnote{font-size:13px}
 .mfoot{display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap;margin-top:4px}
 .resetbar{background:var(--soft);border-bottom:1px solid var(--soft-2);color:var(--text)}
@@ -603,6 +604,145 @@ tr:last-child td{border-bottom:0}
 .resetbar .in>svg{width:18px;height:18px;color:var(--link);flex:none}
 .resetbar .grow{flex:1}
 @media (max-width:860px){.resetbar .in{padding-inline:16px}}
+
+/* ---------- limited access, Q&As ---------- */
+.matrix .p span{display:inline-block;width:22px;height:22px;border-radius:50%;border:2px solid var(--primary);background:linear-gradient(90deg,var(--primary) 50%,transparent 50%);vertical-align:middle}
+.matrix .p.col-on span{border-color:var(--ok);background:linear-gradient(90deg,var(--ok) 50%,transparent 50%)}
+.mlegend{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:10px;font-size:13px;color:var(--muted)}
+.mlegend span{display:inline-flex;align-items:center;gap:8px}
+.mlegend i{font-style:normal;display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;font-size:10px;font-weight:800}
+.mlegend i.y{background:var(--primary);color:#fff}
+.mlegend i.p{border:2px solid var(--primary);background:linear-gradient(90deg,var(--primary) 50%,transparent 50%)}
+.mlegend i.n{color:var(--line-2);font-size:16px}
+.qah{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.qalist{display:grid;gap:12px;margin-top:16px}
+.qaitem{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;display:grid;gap:8px}
+.qaitem h3{font-size:16.5px}
+.qaitem p{font-size:15px;max-width:72ch}
+.qalink{font-size:14px;font-weight:600;justify-self:start}
+
+/* ---------- modal shell (access map, certificate, progress) ---------- */
+body.modal-open{overflow:hidden}
+.modal{max-height:calc(100vh - 32px);overflow:auto}
+.modal.wide{max-width:1040px}
+.mhd{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.mhd h2{margin-top:4px}
+.mhd p{margin-top:6px;max-width:64ch}
+.iconbtn{flex:none;width:40px;height:40px;border-radius:10px;border:1px solid var(--line-2);background:var(--surface);color:var(--text);display:grid;place-items:center;cursor:pointer}
+.iconbtn:hover{border-color:var(--primary)}
+.iconbtn svg{width:18px;height:18px}
+.mft{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:14px}
+.mft .hint{font-size:12.5px}
+.mft kbd{font-family:var(--font);font-size:11px;font-weight:700;border:1px solid var(--line-2);border-radius:5px;padding:1px 6px}
+.amap-nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.amap-cmp{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;font-weight:600;color:var(--muted)}
+.amap-cmp select{height:36px;max-width:100%;border-radius:999px;border:1px solid var(--line-2);background:var(--surface);color:var(--text);padding:0 12px;font:inherit;font-size:14px}
+.amap-cta{display:flex;justify-content:space-between;align-items:center;gap:12px 20px;flex-wrap:wrap;padding:16px 18px;border-radius:var(--radius);background:var(--soft);border:1px solid var(--soft-2)}
+.amap-cta>div{display:grid;gap:2px;font-size:14.5px}
+.amap{display:grid;grid-template-columns:250px minmax(0,1fr);gap:20px;align-items:start}
+.amap-roles{display:grid;gap:6px}
+.amap-roles button{all:unset;box-sizing:border-box;display:grid;grid-template-columns:1fr auto;gap:6px 10px;align-items:center;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--surface-2);cursor:pointer;color:var(--text)}
+.amap-roles button:hover{border-color:var(--primary)}
+.amap-roles button:focus-visible{outline:3px solid var(--green);outline-offset:2px}
+.amap-roles button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:var(--on-dark)}
+.amap-roles button.cmp{border-style:dashed;border-color:var(--muted)}
+.amap-roles .nm{font-size:14px;font-weight:700;line-height:1.25}
+.amap-roles .rp{font-size:12px;font-weight:700;color:var(--muted)}
+.amap-roles button[aria-pressed=true] .rp{color:var(--green)}
+.amap-roles .rb{grid-column:1/-1;height:6px;border-radius:999px;background:var(--line);overflow:hidden}
+.amap-roles .rb i{display:block;height:100%;background:var(--primary);border-radius:inherit;transition:width .3s}
+.amap-roles button[aria-pressed=true] .rb{background:var(--line-dark)}
+.amap-roles button[aria-pressed=true] .rb i{background:var(--green)}
+.amap-main{display:grid;gap:14px;min-width:0}
+.amap-who{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.amap-who>div:first-child{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.amap-who h3{font-size:22px;letter-spacing:-.01em}
+.amap-score{display:grid;text-align:right;line-height:1.1}
+.amap-score b{font-size:30px;font-weight:800;color:var(--link)}
+.amap-score span{font-size:12px;color:var(--muted)}
+.amap-sum{font-size:15.5px;margin-top:8px;max-width:70ch}
+.amap-vs{font-size:14px;color:var(--muted);margin-top:6px}
+.amap-vs b{color:var(--text)}
+.amap-vs .sw{display:inline-block;vertical-align:-2px;margin-right:6px;width:14px;height:14px;border-radius:4px;border:2px dashed var(--muted)}
+.lane{border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;background:var(--surface)}
+.lane-h{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.lane-h h4{font-size:15px}
+.lane-badge{font-size:12px;font-weight:700;padding:3px 10px;border-radius:999px;background:var(--soft);color:var(--link);border:1px solid var(--soft-2)}
+.lane-badge.lim{background:var(--amber-soft);color:var(--amber-ink);border-color:var(--amber-line)}
+.lane-badge.none{background:transparent;color:var(--muted);border-color:var(--line-2)}
+.track{list-style:none;padding:0;margin:14px 0 2px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.st{margin:0;position:relative;display:grid;justify-items:start;align-content:start;gap:3px;padding-right:8px}
+.st::before{content:"";position:absolute;top:13px;left:28px;right:0;height:3px;border-radius:2px;background:var(--line)}
+.st:last-child::before{display:none}
+.st.link::before{background:var(--primary)}
+.st .node{position:relative;z-index:1;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;border:2px dashed var(--line-2);background:var(--surface);color:#fff}
+.st .node svg{width:15px;height:15px}
+.st.lv2 .node{background:var(--primary);border:2px solid var(--primary)}
+.st.lv1 .node{border:2px solid var(--primary);background:linear-gradient(90deg,var(--primary) 50%,var(--surface) 50%)}
+.st .sl{font-size:13.5px;font-weight:700;margin-top:4px;line-height:1.25}
+.st.lv0 .sl{color:var(--muted);font-weight:600}
+.st .sv{font-size:12px;font-weight:600;color:var(--muted)}
+.st.lv2 .sv{color:var(--link)}
+.st.lv1 .sv{color:var(--amber-ink)}
+.st .cv{display:inline-block;font-size:11.5px;font-weight:600;color:var(--muted);margin-top:4px;padding:1px 7px;border:1.5px dashed var(--line-2);border-radius:6px}
+.st .cv.diff{color:var(--text);font-weight:700;border-color:var(--muted)}
+.amap-note{font-size:13px}
+.cert-lock{display:flex;gap:14px;align-items:flex-start;padding:14px 16px;border-radius:var(--radius);background:var(--soft);border:1px solid var(--soft-2)}
+.cert-lock>svg{width:22px;height:22px;flex:none;color:var(--link);margin-top:2px}
+.cert-lock>div{display:grid;gap:4px;font-size:14.5px}
+.cert-left{list-style:none;padding:0;margin:0;display:grid;gap:6px}
+.cert-left li{margin:0;display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:center;font-size:14.5px;padding:8px 10px;border:1px solid var(--line);border-radius:10px}
+.cert-left .d{width:26px;height:26px;border-radius:50%;border:2px solid var(--line-2);display:grid;place-items:center;font-size:11px;font-weight:800}
+.cert-left li.ok .d{background:var(--done);border-color:var(--done);color:var(--ink)}
+.cert-left .d svg{width:13px;height:13px}
+.cert-left .muted{font-size:12.5px}
+.cert-form{display:grid;gap:6px}
+.cert-form label{font-size:13.5px;font-weight:700}
+.cert-form input{height:44px;border-radius:10px;border:1px solid var(--line-2);background:var(--surface);color:var(--text);padding:0 14px;font:inherit;font-size:16px;max-width:460px}
+.cert-form input:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--soft-2)}
+.cert-prev{border:1px solid var(--line);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);background:#F8F8F8}
+.cert-prev canvas{display:block;width:100%;height:auto}
+.certready{border-color:var(--green)!important}
+.certready .t{display:flex;align-items:center;gap:8px}
+.certready .t svg{width:18px;height:18px;color:var(--green)}
+.modal textarea{width:100%;border-radius:10px;border:1px solid var(--line-2);background:var(--surface-2);color:var(--text);padding:10px 12px;font-family:var(--mono);font-size:12.5px;line-height:1.5;resize:vertical;word-break:break-all}
+.modal textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--soft-2)}
+.perr{font-size:14px;color:var(--bad);font-weight:600}
+.navbtn{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:9px;font-size:14.5px;color:var(--c-text);line-height:1.3;cursor:pointer}
+.navbtn:hover{background:var(--c-hover)}
+.navbtn:focus-visible{outline:3px solid var(--green)}
+.navbtn .tail{margin-left:auto;display:flex}
+.lockic{color:var(--c-muted);display:grid}
+.lockic svg{width:16px;height:16px}
+@media (max-width:860px){
+  .amap{grid-template-columns:minmax(0,1fr)}
+  .amap-roles{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+  .modal{padding:18px}
+  .track{grid-template-columns:minmax(0,1fr);margin-top:12px}
+  .st{grid-template-columns:28px auto 1fr;align-items:center;column-gap:10px;padding:0 0 14px}
+  .st:last-child{padding-bottom:0}
+  .st::before{top:28px;left:12.5px;right:auto;width:3px;height:calc(100% - 28px)}
+  .st .sl{margin:0}
+  .st .sv{justify-self:start}
+  .st .cv{grid-column:2/-1;margin-top:0}
+}
+
+/* ---------- live component list ---------- */
+.cl-card{display:grid;grid-template-columns:220px minmax(0,1fr);gap:20px;align-items:center;margin-top:18px;padding:18px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}
+.cl-shot{aspect-ratio:4/3;max-width:100%;border-radius:8px;background:var(--surface-2);border:1px solid var(--line);padding:10px;display:grid;gap:6px;grid-template-rows:2fr 1fr 1fr 1fr}
+.cl-shot span{border-radius:4px;background:var(--soft-2)}
+.cl-shot .b1{background:var(--ink)}
+.cl-shot .b3{background:linear-gradient(90deg,var(--soft-2) 48%,transparent 48%,transparent 52%,var(--soft-2) 52%)}
+.cl-shot .b4{background:repeating-linear-gradient(90deg,var(--soft-2) 0 23%,transparent 23% 25.6%)}
+.cl-body{display:grid;gap:8px;justify-items:start}
+.cl-body h3{font-size:18px}
+.cl-body p.muted{font-size:14px;max-width:62ch}
+.cltable td{font-size:14px}
+.cl-diff{display:flex;gap:6px;align-items:flex-start;margin-top:6px;font-size:12.5px;color:var(--amber-ink);font-weight:600}
+.cl-diff svg{width:14px;height:14px;flex:none;margin-top:2px}
+.cl-link{margin-top:12px}
+.cl-mini{font-size:13.5px;font-weight:600}
+@media (max-width:860px){.cl-card{grid-template-columns:minmax(0,1fr)}.cl-shot{max-width:220px}}
 
 @media (max-width:1100px){
   .with-toc{grid-template-columns:minmax(0,1fr)}.toc{display:none}
@@ -648,6 +788,32 @@ tr:last-child td{border-bottom:0}
 }
 @media (max-width:480px){.brand .wm{display:none}.brand .im{display:block}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+
+/* catalogue (DSP training register) */
+.chip.gap{background:var(--bad-soft);color:var(--bad);border-color:var(--bad-line)}
+.chip.vid{background:var(--soft);color:var(--link);border-color:var(--soft-2)}
+.ccourse .chead{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap}
+.ccourse .chead>div:first-child{flex:1 1 420px;min-width:0}
+.ccourse .cside{display:flex;gap:6px;flex-wrap:wrap}
+.ccourse .cscope{margin:8px 0 6px;font-weight:600}
+.cbar{display:flex;height:8px;border-radius:999px;overflow:hidden;background:var(--c-line);margin-top:18px;max-width:640px}
+.cbar i{display:block;min-width:0}.cbar i.h{background:var(--ok)}.cbar i.v{background:#8A7AF8}.cbar i.e{background:var(--amber)}.cbar i.g{background:var(--bad)}
+.cmeta{font-size:13px;color:var(--c-muted);margin-top:8px}
+.ctopics{list-style:none;margin:16px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:10px}
+.ctopic{border:1px solid var(--c-line);border-left:3px solid var(--bad);border-radius:10px;padding:12px 14px;background:var(--c-card);min-width:0}
+.ctopic.here{border-left-color:var(--ok)}.ctopic.video{border-left-color:#8A7AF8}.ctopic.ext{border-left-color:var(--amber)}
+.ctopic .ct{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.ctopic .ct b{font-size:14.5px;line-height:1.35}
+.ctopic .ct .chip{flex:none;font-size:11.5px;padding:3px 8px}
+.ctopic p{font-size:13.5px;color:var(--c-muted);margin-top:6px;line-height:1.5}
+.clinks{display:grid;gap:4px;margin-top:8px;font-size:13.5px}
+.clinks a{color:var(--c-accent);font-weight:600;display:inline-flex;gap:6px;align-items:center}
+.clinks a svg{width:12px;height:12px}
+.clinks .muted{font-size:12.5px}
+.sidenav .me .crs,.picker .crs{font-size:12px;font-weight:700;color:var(--c-accent)}
+.sidenav .me .crs{margin-top:2px}
+.sidenav .optl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--c-muted);border:1px solid var(--c-line);border-radius:999px;padding:1px 6px}
+.pathlist .t .chip{font-size:11px;padding:2px 8px;vertical-align:2px;margin-left:6px}
 </style>
 <script>try{document.documentElement.setAttribute("data-mode",localStorage.getItem("rec-mode")==="light"?"light":"dark")}catch(e){document.documentElement.setAttribute("data-mode","dark")}</script>
 
@@ -697,26 +863,18 @@ tr:last-child td{border-bottom:0}
    The HTML/CSS above never needs to change for a content update — only
    these objects do.
 
-   MOST COMMON EDIT — filling in "News articles & podcasts":
-     1. Find `news:{` inside the GUIDES object below (search for
-        "07 NEWS"). It currently only has a title/lede/roles and
-        `soon:true`, which is what makes the site show the amber
-        "coming soon" panel.
-     2. Replace it with a full guide object shaped like the `publish`
-        entry just above it (that's the shortest complete example) —
-        title, lede, roles, journey (array of step names for the strip
-        at the top), steps (array of {t, screen, b, why} — see below),
-        outcome, validation, can, tips.
-     3. Delete the `soon:true` line.
-     4. In the MODULES array (search for "id:'news'"), delete the
-        `, soon:true` at the end of that line.
-     5. In the QUESTIONS array, find the two lines with
-        `to:'#/guide/news'` and `to:'#/coming-soon'` for News — update
-        their `soon:true` flags / targets once the content exists.
-     6. Optional: add a `news:[...]` entry to QUIZZES (same shape as the
-        others — question, options, index of the right answer, a one-line
-        explanation, and the step anchor to review, e.g. 'step-3').
-     7. Save, commit, push.
+   MOST COMMON EDITS
+     - Answering an open question: find the QA array, change the item's
+       answer text (a:[...]) and its group's status ('answered',
+       'partial' or 'open'). If a matching entry in QUESTIONS has
+       soon:true or partial:true, remove that flag.
+     - Changing who can do what: edit MATRIX. The second list is full
+       access, the optional fourth list is limited access. The matrix,
+       the permission explorer and the access profile chart all update.
+     - Access map lanes (Roles → Open access map): ACCESS_LANES lists the
+       areas and their stages; each stage points at a MATRIX row label.
+     - Adding steps to a module: add them at the END of its steps array
+       (learners' progress is stored by step position).
 
    ANATOMY OF A STEP (used throughout GUIDES.*.steps):
      { t:'Step title',            // shown as the step heading
@@ -760,61 +918,149 @@ const ROLES = [
   {id:'cmmu', name:'Code Manager Master User', desc:'An administrator level role, with all Code Manager permissions plus the ability to assign other Code Manager roles to users.'}
 ];
 const MATRIX_COLS = ['super','cmmu','kca','kcm','nea','nem','authenticated'];
+/* MATRIX rows: [label, roles with access, guide id, roles with LIMITED access]
+   Limited = the lighter shading in the deck's matrix (slide 11). */
 const MATRIX = [
-  ['Search & manage existing pages', ['super','cmmu'], 'search'],
+  ['Search & manage existing pages', ['super','cmmu'], 'search', ['kca','kcm','nea','nem']],
   ['Create a new Portal page', ['super','cmmu'], 'create-page'],
+  ['Upload media to the library', ['super','cmmu'], 'media', ['kcm','nem']],
   ['Publish Portal page', ['super','cmmu'], 'publish'],
   ['Create wiki page', ['super','cmmu','kca','kcm'], 'wiki'],
   ['Publish wiki page', ['super','cmmu','kcm'], 'wiki'],
   ['Create event, news', ['super','cmmu','nea','nem'], 'events'],
-  ['Publish event, news', ['super','cmmu','nem'], 'events'],
+  ['Publish event, news, bulletins', ['super','cmmu','nem'], 'news'],
   ['Portal pages administration', ['super','cmmu'], 'admin'],
   ['View pages, wiki, events, news', MATRIX_COLS, null]
 ];
+/* ACCESS MAP lanes (Roles page → Open access map). Each stage is
+   [label shown, MATRIX row label it reads from]. Stages run left to right
+   from least to most access. short/noun are used in the summary sentence. */
+const ACCESS_LANES = [
+  {area:'Portal pages', short:'Portal pages', noun:'Portal pages', stages:[['View','View pages, wiki, events, news'],['Search & manage','Search & manage existing pages'],['Create','Create a new Portal page'],['Publish','Publish Portal page']]},
+  {area:'Wiki pages', short:'wiki pages', noun:'wiki pages', stages:[['View','View pages, wiki, events, news'],['Create','Create wiki page'],['Publish','Publish wiki page']]},
+  {area:'Events, news & bulletins', short:'events, news & bulletins', noun:'events, news & bulletins', stages:[['View','View pages, wiki, events, news'],['Create','Create event, news'],['Publish','Publish event, news, bulletins']]},
+  {area:'Media library', short:'the media library', noun:'the media library', stages:[['Upload','Upload media to the library']]},
+  {area:'Portal administration', short:'the Portal (menus, visibility, revisions, taxonomies)', noun:'Portal administration', stages:[['Administer','Portal pages administration']]}
+];
+/* LIVE COMPONENT LIST — the CMS's own gallery of every component, with
+   the image sizes the build expects. Pre-production address: update url
+   at go-live. Sizes read from the page on 5 Oct 2026. deck = what the
+   training pack says, where it differs. */
+const COMPONENT_LIST = {
+  url:'https://reccopreprod.prod.acquia-sites.com/components/lists/all',
+  env:'Pre-production',
+  checked:'5 October 2026',
+  items:[
+    {name:'Hero Image', size:'1600 × 800', note:'Large header with search, quick access links and "Provided by"', deck:'The deck calls this the Hero Banner (1600 × 800px)'},
+    {name:'Hero Banner', size:'1368 × 280', note:'Shorter banner image for a section or page header'},
+    {name:'Hero Image Card Split with Search', size:'826 × 549', note:'Image and text side by side with a search box'},
+    {name:'Image Card Split', size:'720 × 448', note:'Main image plus a list with white SVG icons (16 × 16)'},
+    {name:'External Services', size:'688 × 400', note:'Left- and right-image variants'},
+    {name:'Image Card Section', size:'405 × 125', note:'Row of image cards', deck:'The deck says about 370 × 240px'},
+    {name:'Small Card', size:'', note:'Headline and link, e.g. Change Management, Digital REC'},
+    {name:'Split Textbox', size:'', note:'Description with cards, buttons and an information message'},
+    {name:'Section Header', size:'', note:'Breadcrumb, title, Help and a button'},
+    {name:'Section Description', size:'', note:'Short introductory text'},
+    {name:'Accordion', size:'', note:'Collapsible blocks for long or dense content'},
+    {name:'Column Link Layout', size:'', note:'Up to three columns of links'},
+    {name:'Quick tabs', size:'', note:'Tabbed content, with a grey background variant'},
+    {name:'Document table', size:'', note:'Files with type, size, last updated, download and copy link'},
+    {name:'Record table: DNO layout', size:'', note:'Records with version, upload date and View'},
+    {name:'Record table: Publication layout', size:'', note:'Date of publication, title, organisation and View'},
+    {name:'Video table', size:'', note:'Videos with a short description, upload date and Watch'}
+  ]
+};
 const PAGE_TYPES = [
   ['Portal page','Free format — can use any components, no defined structure; the author has freedom to implement their own design. Role restricted: only elevated roles are permitted to create Portal pages.'],
   ['Wiki page','Pre-defined structure. Content update only, without the ability to implement custom page designs.'],
   ['Events page','Structured event record shown on the front-end Events Calendar (title, category, date/time, location or link, organiser).'],
-  ['News page','Content currently being defined — see News articles & podcasts.']
+  ['News page','News Articles and Podcasts share one content form (title, category, teaser, main content, image or YouTube video). They publish to News and Podcasts in the Knowledge Centre, grouped by category.']
 ];
 const MODULES = [
-  {id:'search',      n:'01', title:'Search & manage existing pages', blurb:'Navigation to find and edit pages', roles:['super','cmmu']},
-  {id:'components',  n:'02', title:'Standard components',            blurb:'Reusable, structured components for standardised page creation', roles:['super','cmmu']},
-  {id:'create-page', n:'03', title:'Create a new Portal page',       blurb:'Creation of new pages in the Portal', roles:['super','cmmu']},
-  {id:'publish',     n:'04', title:'Publish a Portal page',          blurb:'Review and publishing of Portal pages', roles:['super','cmmu','nem']},
-  {id:'wiki',        n:'05', title:'Manage wiki pages',              blurb:'Manage wiki pages by category, create new wiki pages', roles:['super','cmmu','kca','kcm']},
-  {id:'events',      n:'06', title:'REC Events',                     blurb:'Create and view events on the Portal', roles:['super','cmmu','nea','nem','authenticated']},
-  {id:'news',        n:'07', title:'News articles & podcasts',       blurb:'Create and view news and podcasts', roles:['super','cmmu','nea','nem'], soon:true},
-  {id:'admin',       n:'08', title:'Portal pages administration',    blurb:'Manage main menu, page visibility, revisions and taxonomies', roles:['super','cmmu']},
-  {id:'tricks',      n:'09', title:'Useful tricks',                  blurb:'Small techniques that save time in the CMS', roles:['super','cmmu','nea','nem']}
+  {id:'roles',       n:'00', title:'DSP roles overview',             blurb:'The DSP roles, who edits and who publishes, and how to check access', roles:['super','cmmu','kca','kcm','nea','nem','authenticated']},
+  {id:'search',      n:'01', title:'Search & manage existing pages', blurb:'Navigation to find and edit pages', roles:['super','cmmu','kca','kcm','nea','nem']},
+  {id:'components',  n:'02', title:'Standard components',            blurb:'Reusable, structured components for standardised page creation', roles:['super','cmmu','nea','nem']},
+  {id:'media',       n:'03', title:'Upload media to the library',    blurb:'Fill the media library, ready to use when creating content', roles:['super','cmmu','nea','nem']},
+  {id:'create-page', n:'04', title:'Create a new Portal page',       blurb:'Creation of new pages in the Portal', roles:['super','cmmu']},
+  {id:'publish',     n:'05', title:'Publish a Portal page',          blurb:'Review and publishing of Portal pages', roles:['super','cmmu']},
+  {id:'wiki',        n:'06', title:'Manage wiki pages',              blurb:'Manage wiki pages by category, create new wiki pages', roles:['super','cmmu','kca','kcm']},
+  {id:'events',      n:'07', title:'REC Events',                     blurb:'Create and view events on the Portal', roles:['super','cmmu','nea','nem','authenticated']},
+  {id:'news',        n:'08', title:'News articles & podcasts',       blurb:'Create and manage news articles and podcasts', roles:['super','cmmu','nea','nem']},
+  {id:'bulletins',   n:'09', title:'Bulletins',                      blurb:'Add REC and Change bulletins to the Knowledge Centre', roles:['super','cmmu','nea','nem']},
+  {id:'admin',       n:'10', title:'Portal pages administration',    blurb:'Manage main menu, page visibility, revisions and taxonomies', roles:['super','cmmu']},
+  {id:'tricks',      n:'11', title:'Useful tricks',                  blurb:'Small techniques that save time in the CMS', roles:['super','cmmu','nea','nem']}
 ];
 /* Per-role module views, from the three hexagon slides */
 const ROLE_VIEWS = [
-  {id:'su', label:'Super User / Code Manager Master User', mods:['search','components','create-page','publish','wiki','admin','events','news','tricks']},
-  {id:'k',  label:'Knowledge Analyst / Manager',          mods:['search','wiki']},
-  {id:'ne', label:'News & Events Analyst / Manager',      mods:['search','components','create-page','events','news','tricks']},
+  {id:'su', label:'Super User / Code Manager Master User', course:'Content Management', mods:['roles','search','components','media','create-page','publish','wiki','events','news','bulletins','admin','tricks'], optional:['tricks']},
+  {id:'k',  label:'Knowledge Analyst / Manager',          course:'Knowledge Base – Wikis', mods:['search','media','wiki']},
+  {id:'ne', label:'News & Events Analyst / Manager',      course:'News, Events, Podcasts & Bulletins', mods:['search','components','media','events','news','bulletins','tricks'], optional:['tricks']},
   {id:'au', label:'Authenticated User',                   mods:['events']}
 ];
 const QUESTIONS = [
   {q:'How do I create or edit a wiki page?', who:'Everyone needs this', to:'#/guide/wiki'},
   {q:'How do I approve, edit or delete a wiki page?', who:'Knowledge manager', to:'#/guide/wiki#step-6'},
-  {q:'How do I create, edit or delete a News page?', who:'News & events analyst', to:'#/guide/news', soon:true},
+  {q:'How do I create, edit or delete a News page?', who:'News & events analyst', to:'#/guide/news'},
+  {q:'How do I add a podcast?', who:'News & events analyst', to:'#/guide/news#step-7'},
+  {q:'How do I add a REC or Change bulletin?', who:'News & events analyst', to:'#/guide/bulletins'},
   {q:'How do I create, edit or delete an Events page?', who:'News & events analyst', to:'#/guide/events#manage'},
   {q:'How do I create, edit or delete a simple page?', who:'Admin role', to:'#/guide/create-page'},
   {q:'How do I change the main menus?', who:'Admin role', to:'#/guide/admin'},
-  {q:'How do I control user permissions on a page?', who:'News & events analyst', to:'#/coming-soon', soon:true},
-  {q:'How do I apply tags to a page, and what do tags do?', who:'News & events analyst', to:'#/coming-soon', soon:true},
-  {q:'How do I retrieve simple page analytics?', who:'Admin only — not Code Manager', to:'#/coming-soon', soon:true},
-  {q:'How do I add documents into the content library?', who:'News & events analyst', to:'#/coming-soon', soon:true},
-  {q:'How is access to media files controlled?', who:'', to:'#/coming-soon', soon:true}
+  {q:'Where can I see every component and its image size?', who:'Everyone needs this', to:'#/guide/components#live'},
+  {q:'How do I add documents into the content library?', who:'News & events analyst', to:'#/guide/media'},
+  {q:'How do I apply tags to a page, and what do tags do?', who:'News & events analyst', to:'#/qa#qa-tags'},
+  {q:'How is access to media files controlled?', who:'Content roles', to:'#/qa#qa-media'},
+  {q:'How do I retrieve simple page analytics?', who:'Admin only — not Code Manager', to:'#/qa#qa-analytics', partial:true},
+  {q:'How do I control user permissions on a page?', who:'News & events analyst', to:'#/qa#qa-permissions', soon:true}
 ];
-
+/* Q&A answers (deck "Q&As" slide + answers supplied by the RECCo UX Lead, Oct 2026).
+   status: 'answered' | 'partial' (some detail still to come) | 'open' */
+const QA = [
+  {id:'tags', title:'Tags', status:'answered', items:[
+    {q:'How are tags managed?', a:['Tags are managed in the Taxonomy area of Drupal (Structure → Taxonomy).','Vocabulary tags, such as Change, Data spec, Digital REC and Committees, can be used on certain content types, for example news and events.','Document tags, such as Recently updated and Latest, label documents.'], link:['#/guide/admin#step-6','Managing taxonomies (module 10, step 6)']},
+    {q:'Can users create new tags?', a:['This is role based. Certain roles can create tags; most cannot.']},
+    {q:'What does tagging do?', a:['At present tagging is mainly for categorising certain content types: it groups news, podcasts, events and similar items into the same lists.'], link:['#/guide/news#step-9','Managing news categories (module 08, step 9)']}
+  ]},
+  {id:'analytics', title:'Analytics', status:'partial', items:[
+    {q:'How do I retrieve simple page analytics?', a:['To be confirmed. Details have been requested from Capgemini.','This was raised as an admin-only task, not a Code Manager one.']},
+    {q:'Is there an interim reporting solution?', a:['Yes. Google Analytics (GA) will be used across the Portal.']}
+  ]},
+  {id:'media', title:'Media library', status:'answered', items:[
+    {q:'Which roles should have access?', a:['It varies across areas. For example, the Knowledge Manager and Knowledge Analyst should have permission to do this for events and news items.','The deck lists News & Events Analysts and Managers, Code Manager Master Users and Super Users as the relevant users for uploading media.'], link:['#/roles#explore','Compare roles in the permission explorer']},
+    {q:'How does media link to content?', a:['Any page or component that can hold a media file has an Add media field.','From there you can select an existing media file from the library, or upload a new file from your computer. New uploads are also stored in the library.'], link:['#/guide/media#step-6','Adding media to a page (module 03, steps 6–7)']},
+    {q:'Can media files be restricted or password protected?', a:['Not at present. Password protection and bulk upload are not currently available, and folder-based organisation may be considered as a future enhancement.'], link:['#/guide/media#step-10','Managing and reusing media (module 03, step 10)']}
+  ]},
+  {id:'permissions', title:'Page permissions', status:'open', items:[
+    {q:'How do I control user permissions on a page?', a:['Not answered yet. This is listed as an open question in the training pack.']}
+  ]}
+];
 const GUIDES = {
+/* ---------------- 00 DSP ROLES OVERVIEW ----------------
+   Listed in the DSP Training Register (Module Overview_v1) as the first topic of the
+   Content Management course. Built from the roles, aliases and matrix in the deck. */
+roles:{
+  title:'DSP roles overview',
+  lede:'Before you build anything, know which DSP role does what: who can edit, who can publish, who administers the Portal, and where to check what a role can reach.',
+  roles:['super','cmmu','kca','kcm','nea','nem','authenticated'],
+  journey:['Know the roles','Editors vs publishers','Admin roles','Authenticated users','Check access','Changing a role'],
+  steps:[
+    {t:'Know the seven DSP roles', screen:'Training pack → Roles & permissions', b:['Administrators: Super User and Code Manager Master User','Knowledge Centre: Knowledge Content Analyst and Knowledge Content Manager','News & Events: News & Events Analyst and News & Events Manager','Everyone signed in: Authenticated User'], why:'Every module in this pack names the roles it is for'},
+    {t:'Tell editors from publishers', screen:'Roles & permissions → Role definitions', b:['Analyst roles carry the alias Content Editor: they create and update content in their area','Manager roles carry the alias Content Publisher: in the roles × modules matrix, only the Manager (and the admin roles) can publish wiki pages or events, news and bulletins','News & Events roles are restricted to News & Events content'], why:'Content is reviewed by a publisher before it goes live'},
+    {t:'Know the administrator roles', screen:'Roles & permissions → Role definitions', b:['Super User: elevated access to manage the DSP, including global content editing, structural components and all roles and permissions','The Super User role is restricted to the Capgemini DSP team and RECCo IT','Code Manager Master User: all Code Manager permissions, plus assigning other Code Manager roles to users'], why:'Only these two roles create, publish and administer Portal pages'},
+    {t:'Know what an Authenticated User can do', screen:'Roles & permissions → Role definitions', b:['View content, and create and manage their own proposals, profile, favourites, submissions and notifications','Find, view and join REC events','Cannot edit other people’s content or reach admin features'], why:'This is the baseline every signed-in user has'},
+    {t:'Check what a role can reach', screen:'Roles & permissions → Roles × modules matrix / Access map', b:['Find the task in the roles × modules matrix and read across to the role','Full access is a solid tick; limited access is the lighter shading in the deck (meaning still being confirmed)','Open the Access map to see how far each role goes, from view to publish, in each area'], why:'Answers “can I do this?” before you start a task'},
+    {t:'Know who changes a role', screen:'Roles & permissions → Role definitions', b:['A Code Manager Master User can assign other Code Manager roles','A Super User can create, edit and remove any role and its permissions','If you can’t see a screen named in a module, check your role before raising a fault'], why:'Missing menus are usually a role issue, not a bug'}
+  ],
+  outcome:['A clear picture of every DSP role and how responsibility is split','Confidence about which modules and tasks apply to you'],
+  validation:['You can name the editor and publisher role for each content area','You can find any task in the matrix and say which roles can do it'],
+  can:['Pick the right learning path for your role','Route content to the right publisher','Spot when a missing screen is a permissions issue'],
+  tips:[['Start from the matrix','It is the single source for who can do what'],['Analyst = edit, Manager = publish','That is how the matrix splits both Knowledge and News & Events'],['Check your role first','Saves raising faults for missing menus']]
+},
 /* ---------------- 01 SEARCH ---------------- */
 search:{
   title:'Search & manage existing pages',
   lede:'Find any page in the CMS quickly, see where it is in the workflow, and open it to edit.',
-  roles:['cmmu','super'],
+  roles:['kca','kcm','nea','nem','cmmu','super'],
   journey:['REC Admin','Manage Pages','List Pages','Apply filters','Search by title','Select page','Edit / Manage'],
   steps:[
     {t:'Access the page list', screen:'REC Admin → Manage Pages → List Pages (Content Overview)', b:['Navigate to the Content section','Select Overview / List Pages'], why:'Displays the full list of all CMS pages'},
@@ -838,7 +1084,7 @@ search:{
 components:{
   title:'Standard components',
   lede:'Components are the building blocks of every Portal page. Choose the right one and pages stay consistent, accessible and on-brand without any custom design.',
-  roles:['cmmu','super'],
+  roles:['nea','nem','cmmu','super'],
   journey:['Access components','Review examples','Add to page','Apply correct sizes','Structure layout','Validate'],
   intro:{
     what:'Components are pre-configured building blocks within Drupal that enable users to create consistent, structured and user-friendly DSP pages. They standardise how content is presented, ensuring a consistent user experience across the Portal while reducing the need for custom design or technical input.',
@@ -861,16 +1107,29 @@ components:{
   ],
   steps:[
     {t:'Understand the components overview', screen:'Components List', b:['Components are pre-built building blocks used to create pages using text, images and layout structures'], why:'Enables consistent, user-friendly page design'},
-    {t:'Access the components library', screen:'REC Admin → Component List', b:['There are two ways to access components:',['Option 1 — direct access: navigate to REC Admin and select Component List','Option 2 — from a page: open the page in Edit view and go to the Components section']]},
-    {t:'Review available components', screen:'Components List page', b:['Scroll through the available components','Review the structure and examples','Identify appropriate components for your page'], why:'Helps select the right layout before building'},
+    {t:'Access the components library', screen:'REC Admin → Component List', link:'list', b:['There are two ways to access components:',['Option 1 — direct access: navigate to REC Admin and select Component List','Option 2 — from a page: open the page in Edit view and go to the Components section']]},
+    {t:'Review available components', screen:'Components List page', link:'list', b:['Scroll through the available components','Review the structure and examples','Identify appropriate components for your page'], why:'Helps select the right layout before building'},
     {t:'Add components to a page', screen:'Page Edit → Components section', b:['Open the page in Edit view','Navigate to the Components section','Click Add Component','Select the required component type','Populate the required fields (text, images, links)'], why:'Builds page content using modular blocks'}
   ],
+  note:'Before you move on, validate the component output using Preview and the examples on the Components List page.',
   outcome:['Consistent, high-quality page creation','Visual alignment with DSP standards'],
   validation:['Component selection and correct usage','Image sizing and layout consistency','Page structure and usability'],
   can:['Select and use the right component for the job','Size images and lay out pages consistently','Structure pages people can use'],
   tips:[['Use correct image sizes','Do not stretch images'],['Maintain consistent aspect ratios',''],['Use approved stock imagery only','Start from the Brand Hub image bank'],['Avoid text embedded in images','It cannot be read by screen readers or translated'],['Always align component choice to the user journey',''],['Use accordions to reduce page clutter',''],['Keep layouts consistent across pages','']]
 },
-/* ---------------- 03 CREATE PAGE ---------------- */
+/* ---------------- 03 MEDIA (new in deck v2, Oct 2026) ---------------- */
+media:{
+  title:'Upload media to the library',
+  lede:'Store images, icons, documents, video and audio centrally so they are ready to reuse across the Portal, whether you upload them in advance or while editing a page.',
+  roles:['nea','nem','cmmu','super'],
+  journey:['Content','Media','Add Media','Select media type','Upload','Publish','Add to page','Validate'],
+  steps:[{"t": "Access the Media Library", "screen": "Content → Media", "b": ["View all media stored within the portal", "Search or filter items by media type", "Media types include images, icons, documents, video and audio", "Select Add Media to upload a new item"]}, {"t": "Select the Media Type", "screen": "Add Media", "b": ["Choose the appropriate media type before uploading", "Select from images, icons, documents, video or audio", "The selected type determines the accepted file formats", "Incompatible file types cannot be uploaded"]}, {"t": "Upload and Describe the Media", "screen": "Add Media → Selected Media Type", "b": ["Enter a clear and searchable media name", "Select and upload one file from the device", "Add alternative text to images for accessibility", "Complete any fields relevant to the selected media type", "Files must currently be uploaded individually"]}, {"t": "Prepare and Crop Images", "screen": "Image Media Form", "b": ["Review the uploaded image", "Crop the image where the option is available", "Position the important area within the required crop", "Use appropriate crops for cards, banners and other components", "Save the prepared image"]}, {"t": "Set the Publication Status", "screen": "Media Form", "b": ["Select Published to make the media available online", "Published media has a live URL and can be displayed on portal pages", "Leave the item unpublished to store it in the library without making it live", "Save the media item"]}, {"t": "Add Existing Media to a Page", "screen": "Edit Page → Media Component", "b": ["Open the required page or content component", "Select Add Media", "Search or browse for an existing library item", "Select and insert the required media", "Add any associated title, category or link", "Save the page"]}, {"t": "Upload Media Directly from a Page", "screen": "Edit Page → Media Component → Add Media", "b": ["Upload a new media item while editing the page", "Complete the same name, file and accessibility fields", "Save and insert the new item into the component", "The uploaded item is also stored in the central Media Library"]}, {"t": "Publish the Page and Media", "screen": "Page Edit Form", "b": ["Review the page and selected media", "Publish the page when ready", "If the selected media is unpublished, publishing the page also publishes the associated media", "Publishing rights are controlled through the user’s assigned permissions"]}, {"t": "Validate Media Display", "screen": "Published Page / Media Library", "b": ["Confirm the media appears in the correct component", "Check image crop, quality and alternative text", "Verify associated links work correctly", "Confirm published media can be accessed through its live URL", "Check that the item is available for reuse in other components"]}, {"t": "Manage and Reuse Media", "screen": "Media Library", "b": ["Reuse existing media across multiple pages", "Filter the library by media type", "Use clear names to make assets easier to find", "Confirm the correct publication status before use", "Note that password protection and bulk upload are not currently available", "Folder-based organisation may be considered as a future enhancement"]}],
+  note:'Files must currently be uploaded one at a time. Password protection and bulk upload are not available yet, and folder-based organisation may be considered as a future enhancement.',
+  outcome:["Media is stored centrally and available for reuse across the portal.", "Different media types are managed through a consistent upload process.", "Published media is live, accessible through a URL and available to portal pages.", "Unpublished media remains stored in the library until published directly or through a page.", "Media can be uploaded in advance or added while editing a page."],
+  validation:["Confirm the correct media type and supported file format were selected.", "Check the media name, alternative text and image crop.", "Verify the item appears in the Media Library.", "Confirm the publication status is correct.", "Check that published media displays within the intended page component.", "Test any associated media links and confirm the live URL is accessible."],
+  can:["Upload images, icons, documents, videos and audio files.", "Select existing media or upload new media directly from a page.", "Crop images for cards, banners and other components.", "Publish media directly or as part of page publication.", "Reuse media across multiple pages and content components.", "Filter the library by media type to locate existing assets."]
+},
+/* ---------------- 04 CREATE PAGE ---------------- */
 'create-page':{
   title:'Create a new Portal page',
   lede:'After this section you will be able to create new DSP site pages — news pages, pages for a new organisation, committee or party, or any key page in the Portal.',
@@ -904,11 +1163,11 @@ components:{
     takeaway:'Check the Brand Hub before you publish — whatever your permission role. Email the brand team if you need access.'
   }
 },
-/* ---------------- 04 PUBLISH ---------------- */
+/* ---------------- 05 PUBLISH ---------------- */
 publish:{
   title:'Publish & validate a Portal page',
   lede:'Complete the governance step that makes a page live, then confirm it works properly for end users in the live Portal.',
-  roles:['nem','cmmu','super'],
+  roles:['cmmu','super'],
   journey:['Approve page','Publish page','Go to live Portal','Check location and layout','Validate links & navigation'],
   steps:[
     {t:'Publish / final approval', screen:'Publishing controls', b:['Access the page awaiting approval','Open it in Edit mode','Review the page and ensure it is ready to be published','Return it to Draft if it needs further work, and notify the author','When ready, publish by changing the status to Published'], why:'Completes governance and makes the page live'},
@@ -919,7 +1178,7 @@ publish:{
   can:['Verify content in the live Portal','Ensure pages are fully functional and accessible','Maintain quality through final validation checks'],
   tips:[['Always preview before submitting','Catch errors early'],['Use consistent imagery and layouts','Improves professionalism and brand alignment'],['Use menu + URL carefully','Impacts how users find the page']]
 },
-/* ---------------- 05 WIKI ---------------- */
+/* ---------------- 06 WIKI ---------------- */
 wiki:{
   title:'Manage wiki pages',
   lede:'Create structured knowledge articles, assign them to a Knowledge Centre category, and move them through Draft → Needs Review → Published.',
@@ -941,7 +1200,7 @@ wiki:{
   can:['Create and maintain knowledge content efficiently','Organise information using clear categories','Access relevant content quickly via search or browsing'],
   tips:[['Always assign the correct category','Drives discoverability in the Knowledge Centre'],['Use clear titles and descriptions','Improves search accuracy'],['Save as Draft before submitting','Reduces rework during review'],['No components required','Keep content simple and structured'],['Think category-first when creating content','Helps users find information faster']]
 },
-/* ---------------- 06 EVENTS ---------------- */
+/* ---------------- 07 EVENTS ---------------- */
 events:{
   title:'REC Events',
   lede:'Two journeys: how any authenticated user finds and joins an event on the Events Calendar, and how News & Events staff create and publish one.',
@@ -961,8 +1220,8 @@ events:{
       {t:'View previous events', screen:'Events Calendar', b:['View previous events once migrated and available']}
      ],
      outcome:['Users can view upcoming REC events in the Portal','Events can be filtered by category, such as webinar, committee or working group','Individual event records open to show details','Online events can include a meeting link, such as a Teams link','Previous events can be made available once migration is complete'],
-     validation:['Events Calendar is accessible from the Portal','Event categories are visible and can be filtered','Event title, date, time and category display correctly','Teams or event links open where provided','More Details page is available (formatting may still be refined)','Published events appear on the front-end Events Calendar','Users only see event information made available through the Portal'],
-     can:['View and filter REC events','Open individual event records and review date, time and type','Access event links and register where enabled','Access previous events once migrated']},
+     validation:['Events Calendar is accessible from the Portal','Event categories are visible and can be filtered','Individual events can be opened from the calendar','Event title, date, time and category display correctly','Teams or event links open where provided','More Details page is available (formatting may still be refined)','Published events appear on the front-end Events Calendar','Previous events are available once migration is completed','Users only see event information made available through the Portal','Calendar content reflects events managed by authorised users'],
+     can:['View REC events','Filter events by category','Open individual event records','Review event date, time and event type','Access event links where provided','Register for events where enabled','View webinars, committees and working groups','Access previous events once migrated','Return to the calendar to browse other events']},
     {id:'manage', title:'Create and publish an event', roles:['nea','nem'], journey:['REC Admin','REC Events','Add New Event','Enter details','Save','Verify on calendar'],
      steps:[
       {t:'Access REC Admin', screen:'REC Admin page', b:['Navigate to the REC Admin area','Access is based on assigned permissions']},
@@ -981,15 +1240,30 @@ events:{
      can:['Create and categorise new REC events','Add dates, times, meeting links and organiser information','Save and publish events','Check that events appear on the front-end calendar']}
   ]
 },
-/* ---------------- 07 NEWS ---------------- */
-/* ^^^ FILL THIS IN — see "HOW TO EDIT THIS SITE" at the top of this script ^^^ */
+/* ---------------- 08 NEWS & PODCASTS (content added in deck v2, Oct 2026) ---------------- */
 news:{
   title:'News articles & podcasts',
-  lede:'Create and view news and podcasts on the Portal.',
+  lede:'Create, categorise and promote News Articles and Podcasts in the Knowledge Centre. Both use the same content form; a podcast adds a YouTube video instead of an image.',
   roles:['nea','nem','cmmu','super'],
-  soon:true
+  journey:['Knowledge Centre','Manage News Articles','Create content','Add media or video','Set promotion','Publish','Validate front-end display'],
+  steps:[{"t": "Access News and Podcasts", "screen": "Knowledge Centre → News and Podcasts", "b": ["View News and Podcasts using the page toggle", "Browse content displayed as cards", "Search for specific content", "Filter content by category", "Open a card to view the full item", "News items are ordered by publication date unless marked as sticky"]}, {"t": "Access Content Management", "screen": "Admin Area → Manage News Articles", "b": ["View and edit existing News Articles and Podcasts", "Select Add Content to create a new item", "Alternatively, select Add News Article to open the creation form directly", "Use the same content form for both News Articles and Podcasts"]}, {"t": "Create a News Article", "screen": "Add News Article", "b": ["Enter the article title", "Select News as the article type", "Select the relevant category", "Enter teaser text for display on the content card", "Add the main article content in the summary field", "If the teaser is blank, trimmed article text is used on the card"]}, {"t": "Add an Image and Publication Date", "screen": "News Article Form", "b": ["Select an existing image from the Media Library or upload a new image", "The selected image appears in the article and as the card thumbnail", "If no image is selected, the default image is used for the card only", "Use approved, correctly sized brand imagery where available", "Enter the publication date"]}, {"t": "Add Links and Calls to Action", "screen": "News Article Form → Add Component", "b": ["Add links within the article content where required", "Add button components to highlight calls to action", "Enter the button label and destination URL", "Select the appropriate button style", "Add multiple buttons where more than one action is required"]}, {"t": "Set Promotion Options and Publish", "screen": "News Article Form → Promotion Options", "b": ["Select Sticky at top of lists to prioritise important content", "Sticky items appear before non-sticky items and are ordered by date", "Select Promoted to front page to include the item in homepage news", "The homepage displays the three most recent promoted items", "Save and publish the article", "Confirm the new card appears in News and Podcasts"]}, {"t": "Create a Podcast", "screen": "Add News Article", "b": ["Enter the podcast title", "Select Podcast as the article type", "Select the relevant category", "Add the teaser and supporting description", "Copy the required video URL from YouTube", "Add the URL using the Remote Video URL field", "Enter the video duration and publication date"]}, {"t": "Publish and Validate the Podcast (Manager only)", "screen": "Podcast Detail Page / Knowledge Centre", "b": ["Save and publish the Podcast", "Confirm the YouTube thumbnail and embedded player are displayed", "Check the title, description, category and duration", "Confirm the Podcast appears under the Podcast toggle", "Verify that the embedded video plays correctly", "Confirm related News or Podcasts display beneath the content, with a maximum of three related items"]}, {"t": "Manage Categories and Existing Content", "screen": "Manage News Articles / Taxonomy", "b": ["Edit existing News Articles or Podcasts", "Update titles, teaser text, body content, images or publication dates", "Change categories and promotion settings where required", "Add or amend available categories through taxonomy management", "Confirm category filters return the correct content", "Review category changes during UAT and record required amendments"]}, {"t": "Validate Supporting Knowledge Content", "screen": "Knowledge Centre", "b": ["Confirm Weekly Bulletins are listed by date and link to the correct external bulletin", "Check both general REC and Change bulletins", "Confirm User Guides can be viewed, downloaded and shared using copied links", "Verify User Guides can be sorted by last updated date or alphabetically", "Confirm all published News Articles, Podcasts, Bulletins and User Guides are accessible from the appropriate Knowledge Centre area"]}],
+  note:'Publishing and validating a podcast (step 8) is for the News & Events Manager. Analysts create and edit the content.',
+  outcome:["A published News Article or Podcast is available in the Knowledge Centre.", "Content is grouped and searchable by category.", "Sticky content is prioritised above standard items, then ordered by publication date.", "Up to three promoted items appear in the homepage Latest News section.", "Podcasts display an embedded YouTube player, duration and related content."],
+  validation:["Confirm the title, teaser, main content and publication date are correct.", "Verify the selected category filters the content correctly.", "Check the image, default thumbnail or embedded podcast displays correctly.", "Test all links, buttons and podcast playback.", "Confirm Sticky and Promoted to front page settings produce the expected placement.", "Verify related content displays correctly, where applicable."],
+  can:["Create, edit and publish News Articles and Podcasts.", "Categorise content to support filtering and discovery.", "Prioritise important content using Sticky and homepage promotion settings.", "Add approved branding images, embedded podcasts and calls to action.", "Control how content appears across the Knowledge Centre and homepage."]
 },
-/* ---------------- 08 ADMIN ---------------- */
+/* ---------------- 09 BULLETINS (new in deck v2, Oct 2026) ---------------- */
+bulletins:{
+  title:'Bulletins',
+  lede:'Add REC and Change bulletins to the Knowledge Centre. A bulletin entry is a dated link to a bulletin hosted elsewhere, so most of the work is getting the URL and date right.',
+  roles:['nea','nem','cmmu','super'],
+  journey:['Admin area','Add REC Bulletin','Add external URL','Enter publication date','Save','Knowledge Centre','Verify entry','Test link'],
+  steps:[{"t": "Access Bulletin Management", "screen": "Admin Area → Add REC Bulletin", "b": ["Sign in with the appropriate publishing permissions", "Open the bulletin creation form"]}, {"t": "Add the Bulletin URL", "screen": "Add REC Bulletin", "b": ["Copy the URL of the externally hosted bulletin", "Paste the URL into the relevant link field", "Confirm the complete and correct URL has been entered"]}, {"t": "Add the Publication Date", "screen": "Add REC Bulletin", "b": ["Enter the bulletin’s publication date", "Check that the date matches the published bulletin"]}, {"t": "Review and Save", "screen": "Add REC Bulletin", "b": ["Review the URL and publication date", "Correct any inaccurate information", "Select Save to create the bulletin entry"]}, {"t": "Access the Bulletin List", "screen": "Knowledge Centre → Bulletins", "b": ["Return to the Knowledge Centre", "Open the Bulletins area", "Review the list of published bulletin entries"]}, {"t": "Verify the New Entry", "screen": "Bulletins List", "b": ["Locate the newly added bulletin", "Confirm that it appears in the expected position", "Check that the correct publication date is displayed"]}, {"t": "Test the Bulletin Link", "screen": "Bulletins List", "b": ["Select View against the new bulletin", "Confirm that the correct externally hosted bulletin opens", "Check that the bulletin is accessible to relevant users"]}, {"t": "Maintain Published Bulletins", "screen": "Bulletin Management", "b": ["Review existing bulletin entries when required", "Correct inaccurate URLs or publication dates", "Confirm that both REC and Change Bulletins remain accessible"]}],
+  outcome:["A new bulletin entry is published in the Knowledge Centre.", "The bulletin appears in the list with its publication date.", "Users can select View to access the externally hosted bulletin.", "General REC Bulletins and Change Bulletins can be made available through the same area."],
+  validation:["Confirm the correct external URL has been entered.", "Verify the publication date is accurate.", "Check that the bulletin appears in the expected list.", "Select View and confirm the intended bulletin opens.", "Confirm that the external content is accessible to the relevant users."],
+  can:["Add and publish bulletin entries.", "Link users to externally hosted bulletins.", "Maintain a dated list of REC and Change Bulletins.", "Review published entries and correct links or dates where required.", "Provide users with a central location for accessing current and historical bulletins."]
+},
+/* ---------------- 10 ADMIN ---------------- */
 admin:{
   title:'Portal pages administration',
   lede:'Control where pages appear in the main menu, toggle their visibility, manage and compare revisions, and keep taxonomies clean.',
@@ -1008,7 +1282,7 @@ admin:{
   can:['Control how and where content appears in the Portal','Safely manage content changes using revisions','Maintain structured, searchable content through taxonomy'],
   tips:[['Always validate menu placement in the live Portal','Ensures correct user navigation'],['Use the visibility toggle for quick control','Avoids unnecessary deletion'],['Use revisions before making major updates','Protects content history'],['Compare revisions before reverting','Understand what will change'],['Maintain a clean taxonomy structure','Improves search and filtering across the Portal']]
 },
-/* ---------------- 09 TRICKS ---------------- */
+/* ---------------- 11 TRICKS ---------------- */
 tricks:{
   title:'Useful tricks',
   lede:'Small techniques that make CMS work faster or tidier. This list will grow — send yours to the team.',
@@ -1026,6 +1300,12 @@ tricks:{
             why:'Explanation shown after answering', ref:'anchor to review' }
    A module with no entry here simply has no knowledge check. */
 const QUIZZES = {
+  roles:[
+    {q:'Which role publishes News & Events content?', o:['News & Events Analyst','News & Events Manager','Authenticated User','Knowledge Content Analyst'], a:1, why:'Manager roles are the Content Publishers; Analysts edit.', ref:'step-2'},
+    {q:'Who can assign other Code Manager roles to users?', o:['Knowledge Content Manager','News & Events Manager','Code Manager Master User','Any Authenticated User'], a:2, why:'The Code Manager Master User has all Code Manager permissions plus assigning Code Manager roles.', ref:'step-6'},
+    {q:'The Super User role is restricted to…', o:['All Code Managers','The Capgemini DSP team and RECCo IT','News & Events Managers','External REC Parties'], a:1, why:'The deck restricts Super User to the Capgemini DSP team and RECCo IT.', ref:'step-3'},
+    {q:'You can’t see a menu a module mentions. What should you check first?', o:['Clear your browser cache','Raise a fault with the service desk','Your DSP role, using the matrix','Try another browser'], a:2, why:'Missing screens are usually a permissions issue. Check your role in the matrix first.', ref:'step-6'}
+  ],
   search:[
     {q:'You need to find every page that is waiting for approval. What is the quickest first move?', o:['Search for the page title','Filter the list by moderation state: Needs Review','Sort the list by author','Open each page to check its status'], a:1, why:'Checking moderation state first is the fastest way to find Draft or Needs Review pages.', ref:'step-3'},
     {q:'Where do you find the full list of CMS pages?', o:['Structure → Taxonomy','REC Admin → Component List','REC Admin → Manage Pages → List Pages','Structure → Menus'], a:2, why:'List Pages (Content Overview) displays the full list of all CMS pages.', ref:'step-1'},
@@ -1062,6 +1342,24 @@ const QUIZZES = {
     {q:'An event is online. Where does the Teams link go?', o:['In the organiser details','In the location or link field','In the event title','It cannot be added'], a:1, why:'Add a physical location or an online meeting URL, such as a Teams link.', ref:'manage-7'},
     {q:'What is the last step after saving an event?', o:['Email all attendees','Confirm it appears on the front-end Events Calendar and its link works','Add it to the main menu','Create a revision'], a:1, why:'Verify front-end publication: open the event and check the details and links.', ref:'manage-10'},
     {q:'What can an Authenticated User do with events?', o:['Create and publish events','Edit other people’s events','View and filter events, open details and register where enabled','Nothing — events are admin-only'], a:2, why:'Authenticated Users view, filter, open event records and register where enabled.', ref:'view'}
+  ],
+  media:[
+    {q:'Where do you add a new item to the media library?', o:['Structure → Taxonomy','Content → Media → Add Media','REC Admin → Component List','Admin → Manage News Articles'], a:1, why:'The Media Library is under Content → Media; select Add Media to upload a new item.', ref:'step-1'},
+    {q:'What should you add to every image you upload?', o:['A password','A folder','Alternative text','A YouTube URL'], a:2, why:'Alternative text makes images accessible to screen reader users.', ref:'step-3'},
+    {q:'You publish a page that uses an unpublished image. What happens to the image?', o:['It is published along with the page','It stays unpublished and doesn’t show','The page can’t be published','The image is deleted'], a:0, why:'Publishing the page also publishes the associated media.', ref:'step-8'},
+    {q:'Which of these is NOT currently available in the media library?', o:['Filtering by media type','Cropping images','Bulk upload','Reusing media on several pages'], a:2, why:'Files are uploaded one at a time. Password protection and bulk upload are not available yet.', ref:'step-10'}
+  ],
+  news:[
+    {q:'How do you create a podcast?', o:['Use the same form as a news article and choose Podcast as the article type','Use a separate Podcast module','Upload an audio file to the media library only','Ask a Super User'], a:0, why:'News Articles and Podcasts share one content form; the article type decides which it is.', ref:'step-7'},
+    {q:'Where does a podcast’s video come from?', o:['An MP4 uploaded to the media library','A YouTube URL in the Remote Video URL field','A link in the teaser text','A Teams recording'], a:1, why:'Copy the video URL from YouTube into the Remote Video URL field and enter the duration.', ref:'step-7'},
+    {q:'How many promoted items appear in the homepage Latest News section?', o:['One','Three','Five','All of them'], a:1, why:'The homepage shows the three most recent items marked Promoted to front page.', ref:'step-6'},
+    {q:'What happens if you leave the teaser blank?', o:['The card shows no text','You can’t save the article','Trimmed article text is used on the card','The title is repeated'], a:2, why:'If the teaser is blank, trimmed article text is used on the card.', ref:'step-3'},
+    {q:'Who publishes and validates a podcast?', o:['Any Authenticated User','Knowledge Content Analyst','News & Events Manager','News & Events Analyst'], a:2, why:'Publishing and validating a podcast is for the Manager role.', ref:'step-8'}
+  ],
+  bulletins:[
+    {q:'What does a bulletin entry hold?', o:['The full bulletin text','The URL of the externally hosted bulletin and its publication date','An uploaded PDF','A YouTube video'], a:1, why:'A bulletin entry is a dated link to a bulletin hosted elsewhere.', ref:'step-2'},
+    {q:'After saving, how do you check the bulletin works?', o:['Go to Knowledge Centre → Bulletins, find the entry and select View','Check the taxonomy','Open the media library','Wait for an email'], a:0, why:'Confirm the entry appears with the right date, then select View to check the correct bulletin opens.', ref:'step-7'},
+    {q:'Which bulletins are listed in this area?', o:['Only Change Bulletins','Only general REC Bulletins','General REC Bulletins and Change Bulletins','Committee papers'], a:2, why:'General REC Bulletins and Change Bulletins are made available through the same area.', ref:'outcome'}
   ],
   admin:[
     {q:'How do you hide a page from navigation without deleting it?', o:['Unpublish it','Untick Enable in the Main Menu list','Remove its URL alias','Delete its revisions'], a:1, why:'The Enable toggle controls visibility in navigation without deleting content.', ref:'step-3'},
@@ -1203,6 +1501,157 @@ const VIDEOS=[
  chapters:[[0,'The register'],[41,'Derogation or sandbox?'],[66,'Roles and obligations affected'],[86,'Application details'],[108,'Linking and supporting documents'],[130,'Review and submit']]}
 ];
 
+/* ---------- DSP TRAINING CATALOGUE ----------
+   Source: DSP Training Register.xlsx → "Module Overview_v1" (Digital Services,
+   checked 8 October 2026). One entry per course, topics in the register's order,
+   wording tidied (typos fixed, duplicates removed). Audiences are written by
+   function rather than supplier name because this site is a public link.
+   Each topic can point at training that exists today:
+     m:'module-id'  → a module in this pack
+     v:'video-id'   → a video in the video library
+     ext:true       → that video shows the external user's side, not the Code Manager's
+   A topic with neither has no training material yet (a gap). */
+const CATALOGUE_SOURCE = 'DSP Training Register, Module Overview_v1 (Digital Services), checked 8 October 2026';
+const CATALOGUE = [
+  {id:'oam', title:'Organisation & Assurance Management (OAM)', here:false,
+   scope:'Market entry and withdrawals, qualification, accreditation, sandbox and derogations, and performance assurance.',
+   who:'Code Managers. A complete overview of how external users and Code Managers use the Portal across every topic in scope, so external users are supported throughout their journey with RECCo.',
+   topics:[
+    {t:'REC market entry', d:'Review and assess Party admission applications, validate organisation details and move applicants through onboarding.', v:'entry', also:[{v:'ext-entry',ext:true}]},
+    {t:'Qualification', d:'Assess qualification submissions, review supporting evidence and record outcomes.', v:'qualification'},
+    {t:'Accreditation', d:'Assess accreditation submissions, review supporting evidence and record outcomes.', v:'accreditation'},
+    {t:'Manage organisations, legal entities, Parties and non-Parties', d:'Manage the records for organisations, Parties, non-Parties and legal entities, including their accreditations, qualifications and roles.'},
+    {t:'Performance assurance techniques and remediation', d:'Create and monitor performance assurance techniques and remediation; respond to assigned actions, evidence requests and feedback.'},
+    {t:'Withdrawals', d:'Review, validate and manage withdrawal requests so regulatory requirements and stakeholder obligations are met.'},
+    {t:'Sandbox', d:'Review, assess and publish sandbox applications, managing approvals, ownership and supporting information.', v:'ext-derogation', ext:true},
+    {t:'Derogations', d:'Review, assess and publish derogation applications, managing approvals, ownership and supporting documents.', v:'ext-derogation', ext:true},
+    {t:'Performance assurance reporting', d:'Use the Power BI dashboards and reports your role and permissions allow.'},
+    {t:'Performance assurance uploads', d:'Upload performance assurance files and resolve format or validation errors before they are accepted.'},
+    {t:'REC annual maintenance', d:'The yearly review that validates and updates participant, organisation and contact details so records stay accurate, compliant and usable.'}
+   ]},
+  {id:'qual', title:'Qualification & annual maintenance', here:false,
+   who:'Teams carrying out qualification assessments, who need to know the Portal well enough to run the qualification process.',
+   topics:[
+    {t:'Qualification', d:'Assess qualification submissions, review supporting evidence and record outcomes.', v:'qualification'},
+    {t:'REC annual maintenance', d:'The yearly review that validates and updates participant, organisation and contact details so records stay accurate, compliant and usable.'}
+   ]},
+  {id:'pa', title:'Performance assurance', here:false,
+   who:'Teams carrying out performance assurance, who need to know the Portal well enough to run performance assurance processes.',
+   topics:[
+    {t:'Performance assurance techniques and remediation', d:'Create and monitor performance assurance techniques and remediation; respond to assigned actions, evidence requests and feedback.'},
+    {t:'Sandbox', d:'Review, assess and publish sandbox applications, managing approvals, ownership and supporting information.', v:'ext-derogation', ext:true},
+    {t:'Derogations', d:'Review, assess and publish derogation applications, managing approvals, ownership and supporting documents.', v:'ext-derogation', ext:true},
+    {t:'Performance assurance reporting', d:'Use the Power BI dashboards and reports your role and permissions allow.'}
+   ]},
+  {id:'accr', title:'Accreditation', here:false,
+   who:'The accreditation team, who need to know the Portal well enough to run accreditation processes.',
+   topics:[
+    {t:'Accreditation', d:'Assess accreditation submissions, review supporting evidence and record outcomes.', v:'accreditation'}
+   ]},
+  {id:'change', title:'REC Change', here:false,
+   who:'The change management team, so they can navigate the Portal and run change management processes successfully.',
+   topics:[
+    {t:'Raise a change', d:'Use the DSP to raise a change.', v:'ext-change', ext:true},
+    {t:'Amend a change proposal', d:'Actively manage change proposals, not just view them.'},
+    {t:'Change consultations', d:'Create, issue, manage and close consultations to capture stakeholder feedback on change proposals.', v:'ext-consultation', ext:true},
+    {t:'Change register', d:'View every REC change and review individual change proposals in detail.'},
+    {t:'Change portfolio', d:'Create and review the change portfolio.'},
+    {t:'Category 3 change', d:'Use the DSP to raise a Category 3 change. Relevant to all users.'},
+    {t:'Change release', d:'Schedule changes into the right change release.'}
+   ]},
+  {id:'kb', title:'Knowledge Base – Wikis', here:true, path:'k',
+   who:'Everyone who creates wiki pages: the Knowledge Content Analyst and Knowledge Content Manager DSP roles.',
+   topics:[
+    {t:'Search and manage existing pages', d:'Find existing pages and open them to edit.', m:'search'},
+    {t:'Upload media to the library', d:'Fill the media library, ready to use when creating content.', m:'media'},
+    {t:'Manage wiki pages', d:'Manage wiki pages by category and create new ones.', m:'wiki'}
+   ]},
+  {id:'cm', title:'Content Management', here:true, path:'su',
+   who:'The full content management course for people with elevated roles who manage the Portal: the Super User and Code Manager Master User DSP roles.',
+   topics:[
+    {t:'DSP roles overview', d:'The DSP roles, who edits and who publishes, and how to check access.', m:'roles'},
+    {t:'Search and manage existing pages', d:'Find existing pages and open them to edit.', m:'search'},
+    {t:'Upload media to the library', d:'Fill the media library, ready to use when creating content.', m:'media'},
+    {t:'Standard components', d:'Reusable, structured components that keep page creation consistent.', m:'components'},
+    {t:'Create a new Portal page', d:'Create new pages in the Portal. (The register calls these site pages.)', m:'create-page'},
+    {t:'Publish a Portal page', d:'Review and publish a Portal page.', m:'publish'},
+    {t:'Manage wiki pages', d:'Manage wiki pages by category and create new ones.', m:'wiki'},
+    {t:'REC Events', d:'Create and view events on the Portal.', m:'events'},
+    {t:'News articles and podcasts', d:'Create and manage news articles and podcasts.', m:'news'},
+    {t:'Portal pages administration', d:'Manage the main menu, page visibility, revisions and taxonomies.', m:'admin'},
+    {t:'Bulletins', d:'Create and manage bulletins.', m:'bulletins'}
+   ]},
+  {id:'ne', title:'News, Events, Podcasts & Bulletins', here:true, path:'ne',
+   who:'Teams with the News & Events Analyst and News & Events Manager DSP roles.',
+   topics:[
+    {t:'Search and manage existing pages', d:'Find existing pages and open them to edit.', m:'search'},
+    {t:'Standard components', d:'Reusable, structured components that keep page creation consistent.', m:'components'},
+    {t:'Upload media to the library', d:'Fill the media library, ready to use when creating content.', m:'media'},
+    {t:'REC Events', d:'Create and view events on the Portal.', m:'events'},
+    {t:'News articles and podcasts', d:'Create and manage news articles and podcasts.', m:'news'},
+    {t:'Bulletins', d:'Create and manage bulletins.', m:'bulletins'}
+   ]},
+  {id:'sd1', title:'Service Desk: 1st and 2nd line support', here:false,
+   who:'Service desk teams working in Jira Service Management, in three parts: agency, reporting and administration.',
+   parts:[
+    {title:'Agency', topics:[
+      {t:'Search for tickets and requests with the search bar', d:'Find service requests, incidents, tasks or tickets quickly by keyword, ticket number or filter.', v:'jsm-searchbar'},
+      {t:'Navigate a Jira project', d:'Understand how a Jira Service Management project is built: menus, issue types, customer requests and project views.', v:'jsm-navigate'},
+      {t:'Navigate queues', d:'Use service desk queues to view, prioritise and manage tickets against set criteria.', v:'jsm-queues'},
+      {t:'Review and manage issues', d:'Open, update, assign, comment on and progress tickets through their lifecycle, keeping records accurate.', v:'jsm-issueview'},
+      {t:'Monitor and manage SLAs', d:'Track service level targets and response and resolution times, and act before they breach.', v:'jsm-slas'},
+      {t:'Manage tickets using workflows', d:'Understand ticket statuses and transitions, and move issues through the right workflow stages.', v:'jsm-workflows'},
+      {t:'Link issues and create subtasks', d:'Link related tickets and break complex work into manageable subtasks.', v:'jsm-linking'},
+      {t:'Automation rules', d:'Understand how automation rules trigger assignment, notifications, field updates or escalation.', v:'jsm-automation'},
+      {t:'Manage notifications', d:'Set up and manage email and system notifications so the right people get updates.', v:'jsm-notifications'}
+    ]},
+    {title:'Reporting', topics:[
+      {t:'Basic search', d:'Use simple search options and filters to find tickets and analyse service desk activity.', v:'jsm-basic'},
+      {t:'Advanced search', d:'Use JQL (Jira Query Language) and advanced filters for precise searches.', v:'jsm-jql'},
+      {t:'Standard reports', d:'Read the built-in Jira Service Management reports to monitor performance and trends.', v:'jsm-reports'},
+      {t:'Create and configure dashboards', d:'Build dashboards from gadgets, filters and charts for real-time operational insight.', v:'jsm-dashboards'}
+    ]},
+    {title:'Administration', topics:[
+      {t:'Project administration', d:'Manage project settings, permissions, request types, workflows, fields and configuration.', v:'jsm-admin-role', also:[{v:'jsm-admin-queues'},{v:'jsm-admin-automation'}]},
+      {t:'Create and manage SLAs', d:'Set up SLA metrics, calendars, goals and conditions to measure service performance.', v:'jsm-admin-slas'},
+      {t:'JSM groups', d:'Create and maintain user groups and roles that control access, permissions and agent responsibilities.'}
+    ]}
+   ]},
+  {id:'sd2', title:'Service Desk: 2nd line support (agency and reporting)', here:false,
+   who:'Second line support teams investigating and resolving escalated tickets.',
+   topics:[
+    {t:'Search for tickets and requests with the search bar', d:'Find customer requests, incidents and support tickets quickly with search criteria and filters.', v:'jsm-searchbar'},
+    {t:'Navigate a Jira project', d:'Move around project areas, issue views, queues and the components second line support needs.', v:'jsm-navigate'},
+    {t:'Navigate queues', d:'Use support queues to manage workload, spot escalations and prioritise issues to investigate.', v:'jsm-queues'},
+    {t:'Review and manage issues', d:'Investigate, troubleshoot, update and resolve tickets, with the right records and communication.', v:'jsm-issueview'},
+    {t:'Link issues and create subtasks', d:'Link related incidents, problems and requests, and create subtasks for detailed investigation.', v:'jsm-linking'},
+    {t:'Basic search', d:'Run simple searches and filters to find the tickets, trends or records support analysis needs.', v:'jsm-basic'},
+    {t:'Advanced search', d:'Use advanced JQL to find patterns, investigate root causes and support reporting.', v:'jsm-jql'}
+   ]},
+  {id:'drec', title:'Digital REC', here:false,
+   who:'Change and release teams and data teams who maintain the Digital REC.',
+   topics:[
+    {t:'Digital REC navigation', d:'Browse, search, navigate and download REC schedules, Category 3 documents and process maps, and move easily between related REC content.', v:'ext-navigate', ext:true},
+    {t:'REC definitions updates', d:'Definitions are managed centrally and shared across REC documents. When an updated definition is imported and published, every live document that uses it shows the new value.'},
+    {t:'Code release management', d:'Create, maintain and publish code releases so change proposals are grouped, tracked and communicated through the release lifecycle.'},
+    {t:'Digital REC process maps', d:'Create, publish and maintain process maps linked to REC schedules and clauses, so users can view, download and move between diagrams and documents.'},
+    {t:'Publish and roll back REC documents', d:'Authorised users deploy approved REC documents to the Portal and API, with a quick way to reverse a release if needed.'},
+    {t:'Compare document versions', d:'Review and validate the differences between versions before publishing updates to the Digital REC.'},
+    {t:'Data specification', d:'Description to be confirmed in the register.'}
+   ]},
+  {id:'drecpub', title:'Digital REC publishing', here:false,
+   who:'Teams involved in publishing REC schedules.',
+   topics:[
+    {t:'Digital REC navigation', d:'Browse, search, navigate and download REC schedules, Category 3 documents and process maps, and move easily between related REC content.', v:'ext-navigate', ext:true},
+    {t:'Publish and roll back REC documents', d:'Authorised users deploy approved REC documents to the Portal and API, with a quick way to reverse a release if needed.'},
+    {t:'Compare document versions', d:'Review and validate the differences between versions before publishing updates to the Digital REC.'}
+   ]},
+  {id:'committees', title:'Committees', here:false, soon:true,
+   who:'Coming soon. The register lists this course without topics yet.', topics:[]}
+];
+const catTopics = c => c.parts ? c.parts.flatMap(p=>p.topics) : c.topics;
+
+const LOGO_PATHS=["M80.1 1.3H41.6C19.2 1.3 1 19.5 1 41.9C1 64.3 19.2 82.6 41.6 82.6H80.1C102.5 82.6 120.7 64.3 120.7 41.9C120.7 19.5 102.5 1.3 80.1 1.3ZM80.1 72.4C78 72.4 75.9 72.2 73.9 71.8C72.5 71.5 71.2 71.1 70 70.7C68.7 70.2 67.3 69.6 66.1 69C55.9 63.7 49.6 53.3 49.6 41.9C49.6 30.6 55.9 20.2 66.1 14.9C67.3 14.2 68.7 13.7 70 13.2C71.2 12.8 72.5 12.4 73.8 12.1C75.9 11.7 78 11.5 80.1 11.5C96.9 11.5 110.6 25.1 110.6 41.9C110.6 58.7 96.9 72.4 80.1 72.4V72.4ZM41.6 11.5H53.2C44.5 19.1 39.5 30.1 39.5 41.9C39.5 53.8 44.5 64.8 53.2 72.4H41.6C24.8 72.4 11.1 58.7 11.1 41.9C11.1 25.1 24.8 11.5 41.6 11.5Z", "M189.4 0.8C194 0.8 198.1 1.5 201.8 2.9C195.6 7.7 190.5 13.8 186.9 20.8C185.6 20.5 184.2 20.3 182.7 20.3C174 20.3 167.2 26.5 167 34.5V80.7H145.1V2.7H165.9V10C171.2 4.5 179.3 0.8 189.4 0.8V0.8Z", "M264.5 67.3C258.3 75.6 248.3 82.6 230.2 82.6C204.9 82.6 188.5 65 188.5 41.8C188.5 18.5 206.4 0.9 228.8 0.9C244.6 0.9 256.3 8.7 262.9 19.3C259.5 26 257.6 33.7 257.6 41.9C257.6 44.1 257.8 46.3 258 48.4H210C212.5 58.7 220.5 64.4 230.8 64.4C240.5 64.4 245.4 61 248.8 54.8L264.5 67.3V67.3ZM229.4 17.5C219.3 17.5 211.9 23.4 209.7 34.1H248.3C246.2 23.9 239.4 17.5 229.4 17.5Z", "M331.2 9.6C324.2 4.1 315.4 0.8 305.8 0.8C283.3 0.8 265 19.1 265 41.6C265 64.2 283.3 82.5 305.8 82.5C315.4 82.5 324.2 79.2 331.2 73.6C326.7 68.5 323.2 62.4 321.1 55.6C317.4 59.8 311.9 62.4 305.8 62.4C294.4 62.4 285.1 53.1 285.1 41.6C285.1 30.2 294.4 20.9 305.8 20.9C311.9 20.9 317.4 23.5 321.1 27.7C323.2 20.9 326.7 14.8 331.2 9.6ZM336.6 68.5C342.7 61.5 346.5 52.4 346.7 42.4C346.7 42.1 346.7 41.9 346.7 41.6C346.7 41.4 346.7 41.1 346.7 40.9C346.5 30.9 342.7 21.8 336.6 14.8C330.5 21.8 326.7 30.9 326.6 40.9C326.6 41.1 326.6 41.4 326.6 41.6C326.6 41.9 326.6 42.1 326.6 42.4C326.7 52.4 330.5 61.5 336.6 68.5Z", "M429 62.4C440.5 62.4 449.8 53.1 449.8 41.6C449.8 30.2 440.5 20.9 429 20.9C417.6 20.9 408.3 30.2 408.3 41.6C408.3 53.1 417.6 62.4 429 62.4ZM429 82.5C451.6 82.5 469.9 64.2 469.9 41.6C469.9 19.1 451.6 0.8 429 0.8C406.5 0.8 388.2 19.1 388.2 41.6C388.2 64.2 406.5 82.5 429 82.5Z", "M392.8 9.6C385.8 4.1 377 0.8 367.4 0.8C344.8 0.8 326.5 19.1 326.5 41.6C326.5 64.2 344.8 82.5 367.4 82.5C377 82.5 385.8 79.2 392.8 73.6C388.3 68.5 384.8 62.3 382.8 55.6C379 59.8 373.5 62.4 367.4 62.4C356 62.4 346.7 53.1 346.7 41.6C346.7 30.2 356 20.9 367.4 20.9C373.5 20.9 379 23.5 382.8 27.7C384.8 20.9 388.3 14.8 392.8 9.6ZM398.2 68.5C404.5 61.3 408.3 51.9 408.3 41.6C408.3 31.4 404.5 22 398.2 14.8C392 22 388.2 31.4 388.2 41.6C388.2 51.9 392 61.3 398.2 68.5Z"];
 /* =====================================================================
    APP (v2 interactive edition) — you should not need to edit below here
    for content changes. Progress is stored only in the learner's own
@@ -1212,8 +1661,8 @@ const VIDEOS=[
 /* ---------- role paths (v2) ---------- */
 const PATH_INFO = {
   su:{short:'Super User / CMMU', desc:'Build, publish and administer Portal pages', matrixRole:'cmmu'},
-  k: {short:'Knowledge Analyst / Manager', desc:'Create and publish wiki pages in the Knowledge Centre', matrixRole:'kca'},
-  ne:{short:'News & Events Analyst / Manager', desc:'Create news, events and supporting pages', matrixRole:'nea'},
+  k: {short:'Knowledge Analyst / Manager', desc:'Create and publish wiki pages, and add media to the library', matrixRole:'kca'},
+  ne:{short:'News & Events Analyst / Manager', desc:'Create news, podcasts, events, bulletins and media', matrixRole:'nea'},
   au:{short:'Authenticated User', desc:'Find, view and join REC events', matrixRole:'authenticated'}
 };
 
@@ -1232,6 +1681,13 @@ const I = {
   info:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></svg>',
   target:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg>',
   restart:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>',
+  pause:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>',
+  map:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="6" r="2"/><circle cx="12" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="12" cy="18" r="2"/><path d="M7 6h3M14 6h3M7 18h3"/></svg>',
+  award:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M8.5 14 7 22l5-3 5 3-1.5-8"/></svg>',
+  lock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>',
+  download:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>',
+  save:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h11l3 3v13H5z"/><path d="M8 4v5h7V4M8 20v-6h8v6"/></svg>',
+  ext:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>',
   x:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>'
 };
 
@@ -1264,14 +1720,17 @@ function pathIds(){
   return v?MODULES.filter(m=>v.mods.includes(m.id)).map(m=>m.id):MODULES.map(m=>m.id);
 }
 const inPath=id=>pathIds().includes(id);
+const optIds=()=>(ROLE_VIEWS.find(r=>r.id===S.role)||{}).optional||[];
+const isOpt=id=>optIds().includes(id);
+function pathCourse(){ const v=ROLE_VIEWS.find(r=>r.id===S.role); return v&&v.course?v.course:''; }
 function overall(){
   let t=0,d=0,mods=0,modsDone=0,steps=0,checks=0;
-  pathIds().forEach(id=>{ if(modOf(id).soon) return; const p=prog(id); t+=p.total; d+=p.done; mods++; if(p.total&&p.done===p.total) modsDone++; steps+=p.stepsDone; if(p.passed) checks++; });
+  pathIds().forEach(id=>{ if(modOf(id).soon||isOpt(id)) return; const p=prog(id); t+=p.total; d+=p.done; mods++; if(p.total&&p.done===p.total) modsDone++; steps+=p.stepsDone; if(p.passed) checks++; });
   return {pct:t?Math.round(d/t*100):0,mods,modsDone,steps,checks};
 }
 function nextUp(){
   for(const id of pathIds()){
-    if(modOf(id).soon) continue;
+    if(modOf(id).soon||isOpt(id)) continue;
     const items=itemsOf(id); const u=items.find(x=>!isDone(id,x.key));
     if(u) return {id,item:u,label:`Step ${items.indexOf(u)+1} of ${items.length}: ${u.s.t}`,href:`#/guide/${id}/walk#${u.key}`};
     if(QUIZZES[id]&&!S.quiz[id]?.passed) return {id,label:'Knowledge check',href:`#/guide/${id}#quiz`};
@@ -1294,9 +1753,10 @@ function checkBtn(id,key,title){
   const on=isDone(id,key);
   return `<button type="button" class="check" data-check="${id}|${key}" aria-pressed="${on}" aria-label="${on?'Done':'Mark as done'}: ${esc(title)}"><span class="box">${I.check}</span><span class="lbl">${on?'Done':'Mark done'}</span></button>`;
 }
+const clLink=(cls='')=>`<a class="btn btn-ghost ${cls} cl-link" href="${COMPONENT_LIST.url}" target="_blank" rel="noopener">${I.ext}Open the live component list<span class="sr"> (opens in a new tab)</span> ↗</a>`;
 function stepCard(id,it){
   const s=it.s, on=isDone(id,it.key);
-  return `<li class="step ${on?'done':''}" id="${it.key}" data-step="${id}|${it.key}"><span class="no" aria-hidden="true">${on?I.check:it.n}</span><div><h3><span class="sr">Step ${it.n}: </span>${esc(s.t)}</h3>${pathChip(s.screen)}${list(s.b)}${why(s.why)}</div>${checkBtn(id,it.key,s.t)}</li>`;
+  return `<li class="step ${on?'done':''}" id="${it.key}" data-step="${id}|${it.key}"><span class="no" aria-hidden="true">${on?I.check:it.n}</span><div><h3><span class="sr">Step ${it.n}: </span>${esc(s.t)}</h3>${pathChip(s.screen)}${list(s.b)}${why(s.why)}${s.link==='list'?clLink('btn-sm'):''}</div>${checkBtn(id,it.key,s.t)}</li>`;
 }
 const panels=g=>`<div class="panels">
   <div class="panel"><h3><i></i>Outcome</h3>${list(g.outcome)}</div>
@@ -1309,23 +1769,24 @@ function toast(msg){ const t=$('#toast'); t.innerHTML=`<i></i>${esc(msg)}`; t.cl
 function renderHome(){
   const o=overall(), nu=nextUp(), role=S.role, v=ROLE_VIEWS.find(r=>r.id===role);
   const picker=`<div class="picker" id="choose"><h2>What’s your role?</h2><p>To perform any process in this pack, one of these DSP roles must be assigned to your account. Pick yours and the pack builds your learning path. You can change it any time.</p>
-    <div class="opts">${ROLE_VIEWS.map(r=>`<button type="button" class="opt" data-role="${r.id}" aria-pressed="${role===r.id}"><b>${esc(r.label)}</b><small>${esc(PATH_INFO[r.id].desc)}</small><span class="n">${r.mods.length} module${r.mods.length>1?'s':''}</span></button>`).join('')}</div>
-    <p class="skipit">Not sure? <button type="button" class="linkbtn" data-role="all">Show me everything</button> or compare roles on <a href="#/roles" style="color:var(--c-accent)">Roles &amp; permissions</a>.${hasProgress()?' <button type="button" class="linkbtn" data-action="reset">Restart training</button>':''}</p></div>`;
+    <div class="opts">${ROLE_VIEWS.map(r=>`<button type="button" class="opt" data-role="${r.id}" aria-pressed="${role===r.id}"><b>${esc(r.label)}</b><small>${r.course?`<span class="crs">${esc(r.course)} course</span> · `:''}${esc(PATH_INFO[r.id].desc)}</small><span class="n">${r.mods.length-(r.optional||[]).length} module${r.mods.length-(r.optional||[]).length>1?'s':''}${(r.optional||[]).length?` + ${(r.optional||[]).length} optional`:''}</span></button>`).join('')}</div>
+    <p class="skipit">Not sure? <button type="button" class="linkbtn" data-role="all">Show me everything</button> or compare roles on <a href="#/roles" style="color:var(--c-accent)">Roles &amp; permissions</a>.${hasProgress()?' <button type="button" class="linkbtn" data-action="reset">Restart training</button>':''}</p><p class="skipit">Started on another device, or cleared your browser? <button type="button" class="linkbtn" data-action="open-progress" data-tab="restore">Restore from a progress code</button></p></div>`;
   const resume=`<div class="resume"><div class="top">${ring(o.pct,'lg','Overall progress '+o.pct+'%')}<div><div class="k">Your path</div><h2>${v?esc(v.label):'All modules'}</h2><div class="row" style="margin-top:6px"><button type="button" class="linkbtn" data-action="change-role">Change role</button></div></div></div>
     <div class="stats"><div><b>${o.modsDone}/${o.mods}</b><span>modules complete</span></div><div><b>${o.steps}</b><span>steps done</span></div><div><b>${o.checks}</b><span>checks passed</span></div></div>
     ${nu?`<div class="next"><div class="k">Up next · Module ${modOf(nu.id).n} · ${esc(modOf(nu.id).title)}</div><div class="t">${esc(nu.label)}</div><div class="row" style="margin-top:6px"><a class="btn btn-green" href="${nu.href}">${I.play}${o.pct?'Continue':'Start learning'}</a><a class="btn btn-ghost" href="#/guide/${nu.id}">Module overview</a></div></div>`
-      :`<div class="next"><div class="t">You’ve completed your path.</div><div class="s">Revisit any module, or explore the ones outside your role.</div></div>`}
-    ${hasProgress()?`<div class="row"><button type="button" class="btn btn-ghost btn-sm" data-action="reset">${I.restart}Restart training</button><span style="font-size:12.5px;color:var(--c-muted)">Progress is saved in this browser only</span></div>`:''}</div>`;
+      :''}
+    ${pathComplete()?`<div class="next certready"><div class="t">${I.award}You’ve completed your learning path</div><div class="s">Completed ${fmtDate(S.completedAt||new Date().toISOString())}. Get your certificate as a PDF.</div><div class="row" style="margin-top:6px"><button type="button" class="btn btn-green" data-action="open-cert">${I.award}Get your certificate</button></div></div>`:''}
+    ${hasProgress()?`<div class="row"><button type="button" class="btn btn-ghost btn-sm" data-action="open-progress">${I.save}Save progress</button><button type="button" class="btn btn-ghost btn-sm" data-action="reset">${I.restart}Restart training</button><span style="font-size:12.5px;color:var(--c-muted)">Progress is saved in this browser only</span></div>`:''}</div>`;
   const ids=pathIds(), others=MODULES.filter(m=>!ids.includes(m.id));
-  const pathSec = role?`<section class="hsec" aria-labelledby="h-path"><div class="hh"><div><h2 id="h-path">Your learning path</h2><p>Work through these in order. Each module has a guided walkthrough, a checklist of steps and a short knowledge check.</p></div></div>
-    <ol class="pathlist">${ids.map(id=>{const m=modOf(id),p=prog(id);return `<li><a href="#/guide/${id}">${m.soon?`<span class="ring" style="--p:0"><span>${m.n}</span></span>`:ring(p.pct,'','Module '+m.n+' '+p.pct+'% complete').replace(`<span>${p.pct}%</span>`,`<span>${p.done===p.total?'✓':m.n}</span>`)}<div><div class="t">${esc(m.title)}</div><div class="s">${esc(m.blurb)}</div></div><div class="pg">${m.soon?'<span class="chip soon">Coming soon</span>':`${bar(p.pct)}<span>${statusText(p)}</span>`}</div><span class="go">${m.soon?'Preview':p.done===p.total?'Review':p.done?'Continue':'Start'} →</span></a></li>`}).join('')}</ol></section>`:'';
+  const pathSec = role?`<section class="hsec" aria-labelledby="h-path"><div class="hh"><div><h2 id="h-path">Your learning path</h2><p>${pathCourse()?`Matches the <b>${esc(pathCourse())}</b> course in the DSP training catalogue. `:''}Work through these in order. Each module has a guided walkthrough, a checklist of steps and a short knowledge check.</p></div></div>
+    <ol class="pathlist">${ids.map(id=>{const m=modOf(id),p=prog(id);return `<li><a href="#/guide/${id}">${m.soon?`<span class="ring" style="--p:0"><span>${m.n}</span></span>`:ring(p.pct,'','Module '+m.n+' '+p.pct+'% complete').replace(`<span>${p.pct}%</span>`,`<span>${p.done===p.total?'✓':m.n}</span>`)}<div><div class="t">${esc(m.title)}${isOpt(id)?' <span class="chip">Optional</span>':''}</div><div class="s">${esc(m.blurb)}</div></div><div class="pg">${m.soon?'<span class="chip soon">Coming soon</span>':`${bar(p.pct)}<span>${statusText(p)}</span>`}</div><span class="go">${m.soon?'Preview':p.done===p.total?'Review':p.done?'Continue':'Start'} →</span></a></li>`}).join('')}</ol></section>`:'';
   const modGrid=(arr,h,p)=>`<section class="hsec" aria-labelledby="h-${h}"><div class="hh"><div><h2 id="h-${h}">${p.title}</h2><p>${p.sub}</p></div></div><div class="grid c3">${arr.map(m=>{const pr=prog(m.id);return `<a class="mcard ${m.soon?'soon':''} ${role&&role!=='all'&&!ids.includes(m.id)?'off':''}" href="#/guide/${m.id}"><div class="top"><span class="k">Module ${m.n}</span>${m.soon?'<span class="chip soon">Coming soon</span>':ring(pr.pct,'sm')}</div><h3>${esc(m.title)}</h3><p>${esc(m.blurb)}</p><div class="foot"><span>${m.soon?'Content in progress':`${itemsOf(m.id).length} ${m.id==='tricks'?'trick':'steps'}${QUIZZES[m.id]?' · check':''}`}</span><span>${m.soon?'':statusText(pr)}</span></div></a>`}).join('')}</div></section>`;
-  const whos=['All',...new Set(QUESTIONS.filter(q=>!q.soon&&q.who).map(q=>q.who)),'Not yet covered'];
+  const whos=['All',...new Set(QUESTIONS.filter(q=>!q.soon&&q.who).map(q=>q.who)),'Open questions'];
   return `<div class="band on-dark"><div class="page"><section class="hero">
       <div><svg class="lockup" viewBox="0 0 216 56" role="img" aria-label="RECCo, Retail Energy Code"><g transform="scale(0.6504)"><path class="lm" d="M80.1 1.3H41.6C19.2 1.3 1 19.5 1 41.9C1 64.3 19.2 82.6 41.6 82.6H80.1C102.5 82.6 120.7 64.3 120.7 41.9C120.7 19.5 102.5 1.3 80.1 1.3ZM80.1 72.4C78 72.4 75.9 72.2 73.9 71.8C72.5 71.5 71.2 71.1 70 70.7C68.7 70.2 67.3 69.6 66.1 69C55.9 63.7 49.6 53.3 49.6 41.9C49.6 30.6 55.9 20.2 66.1 14.9C67.3 14.2 68.7 13.7 70 13.2C71.2 12.8 72.5 12.4 73.8 12.1C75.9 11.7 78 11.5 80.1 11.5C96.9 11.5 110.6 25.1 110.6 41.9C110.6 58.7 96.9 72.4 80.1 72.4V72.4ZM41.6 11.5H53.2C44.5 19.1 39.5 30.1 39.5 41.9C39.5 53.8 44.5 64.8 53.2 72.4H41.6C24.8 72.4 11.1 58.7 11.1 41.9C11.1 25.1 24.8 11.5 41.6 11.5Z"/></g><g transform="translate(43.6 2.74) scale(0.3267)"><path class="lt" d="M189.4 0.8C194 0.8 198.1 1.5 201.8 2.9C195.6 7.7 190.5 13.8 186.9 20.8C185.6 20.5 184.2 20.3 182.7 20.3C174 20.3 167.2 26.5 167 34.5V80.7H145.1V2.7H165.9V10C171.2 4.5 179.3 0.8 189.4 0.8V0.8Z"/><path class="lt" d="M264.5 67.3C258.3 75.6 248.3 82.6 230.2 82.6C204.9 82.6 188.5 65 188.5 41.8C188.5 18.5 206.4 0.9 228.8 0.9C244.6 0.9 256.3 8.7 262.9 19.3C259.5 26 257.6 33.7 257.6 41.9C257.6 44.1 257.8 46.3 258 48.4H210C212.5 58.7 220.5 64.4 230.8 64.4C240.5 64.4 245.4 61 248.8 54.8L264.5 67.3V67.3ZM229.4 17.5C219.3 17.5 211.9 23.4 209.7 34.1H248.3C246.2 23.9 239.4 17.5 229.4 17.5Z"/><path class="lt" d="M331.2 9.6C324.2 4.1 315.4 0.8 305.8 0.8C283.3 0.8 265 19.1 265 41.6C265 64.2 283.3 82.5 305.8 82.5C315.4 82.5 324.2 79.2 331.2 73.6C326.7 68.5 323.2 62.4 321.1 55.6C317.4 59.8 311.9 62.4 305.8 62.4C294.4 62.4 285.1 53.1 285.1 41.6C285.1 30.2 294.4 20.9 305.8 20.9C311.9 20.9 317.4 23.5 321.1 27.7C323.2 20.9 326.7 14.8 331.2 9.6ZM336.6 68.5C342.7 61.5 346.5 52.4 346.7 42.4C346.7 42.1 346.7 41.9 346.7 41.6C346.7 41.4 346.7 41.1 346.7 40.9C346.5 30.9 342.7 21.8 336.6 14.8C330.5 21.8 326.7 30.9 326.6 40.9C326.6 41.1 326.6 41.4 326.6 41.6C326.6 41.9 326.6 42.1 326.6 42.4C326.7 52.4 330.5 61.5 336.6 68.5Z"/><path class="lt" d="M429 62.4C440.5 62.4 449.8 53.1 449.8 41.6C449.8 30.2 440.5 20.9 429 20.9C417.6 20.9 408.3 30.2 408.3 41.6C408.3 53.1 417.6 62.4 429 62.4ZM429 82.5C451.6 82.5 469.9 64.2 469.9 41.6C469.9 19.1 451.6 0.8 429 0.8C406.5 0.8 388.2 19.1 388.2 41.6C388.2 64.2 406.5 82.5 429 82.5Z"/><path class="lt" d="M392.8 9.6C385.8 4.1 377 0.8 367.4 0.8C344.8 0.8 326.5 19.1 326.5 41.6C326.5 64.2 344.8 82.5 367.4 82.5C377 82.5 385.8 79.2 392.8 73.6C388.3 68.5 384.8 62.3 382.8 55.6C379 59.8 373.5 62.4 367.4 62.4C356 62.4 346.7 53.1 346.7 41.6C346.7 30.2 356 20.9 367.4 20.9C373.5 20.9 379 23.5 382.8 27.7C384.8 20.9 388.3 14.8 392.8 9.6ZM398.2 68.5C404.5 61.3 408.3 51.9 408.3 41.6C408.3 31.4 404.5 22 398.2 14.8C392 22 388.2 31.4 388.2 41.6C388.2 51.9 392 61.3 398.2 68.5Z"/></g><text class="lt" x="89" y="51.3" font-family="Figtree, sans-serif" font-size="14.42" font-weight="400">Retail Energy Code</text></svg><div class="eyebrow">REC Portal · Drupal CMS</div><h1>Content management <em>training</em></h1>
-      <p class="l">How to build and manage pages, wiki articles, news and events in the REC Portal — and who is allowed to do what. Built for Code Managers and the teams that publish on their behalf.</p>
+      <p class="l">How to build and manage pages, media, wiki articles, news, podcasts, events and bulletins in the REC Portal — and who is allowed to do what. Built for Code Managers and the teams that publish on their behalf.</p>
       <div class="upd">Training pack v1 · July 2026 · Interactive edition</div>
-      <div class="row" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:22px"><a class="btn btn-primary" href="#/roles">Roles &amp; permissions</a><a class="btn btn-ghost" href="#/guide/search">Start with module 01</a></div></div>
+      <div class="row" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:22px"><a class="btn btn-primary" href="#/roles">Roles &amp; permissions</a><a class="btn btn-ghost" href="#/guide/roles">Start with module 00</a></div></div>
       ${role?resume:picker}
     </section></div></div>
     <div class="page">
@@ -1334,15 +1795,16 @@ function renderHome(){
     <section class="hsec" aria-labelledby="h-vid"><div class="hh"><div><h2 id="h-vid">Video walkthroughs</h2><p>Screen recordings of the portal and the service desk, with summaries and chapters so you can jump to the part you need.</p></div><a class="btn btn-ghost btn-sm" href="#/videos">Open the video library</a></div>
       <div class="grid c4">${VIDEO_SERIES.map(s=>{const st=seriesStats(s.id);return `<a class="mcard vser" href="#/videos#series-${s.id}" style="--vaccent:${s.accent}"><div class="top"><span class="k">${st.n} video${st.n>1?'s':''} · ${fmtLong(st.dur)}</span></div><h3>${esc(s.title)}</h3><p>${esc(s.audience)}</p><div class="foot"><span>${st.w} of ${st.n} watched</span><span>${s.id==='ext'?'<span class="chip soon">For review</span>':''}</span></div></a>`;}).join('')}</div>
     </section>
-    <section class="hsec" aria-labelledby="h-q"><div class="hh"><div><h2 id="h-q">How do I…?</h2><p>The questions this pack sets out to answer. Amber items are not covered yet.</p></div></div>
+    <section class="hsec" aria-labelledby="h-cat"><div class="hh"><div><h2 id="h-cat">Part of the DSP training programme</h2><p>This pack teaches three of the courses in the DSP training register: Content Management, Knowledge Base – Wikis, and News, Events, Podcasts &amp; Bulletins. See every course, who it is for, and where training exists.</p></div><a class="btn btn-ghost btn-sm" href="#/catalogue">Open the training catalogue</a></div></section>
+    <section class="hsec" aria-labelledby="h-q"><div class="hh"><div><h2 id="h-q">How do I…?</h2><p>The questions this pack sets out to answer. Amber items are still open or only partly answered; see <a href="#/qa">Q&amp;As</a>.</p></div></div>
       <div class="qfilter" role="group" aria-label="Filter questions by audience">${whos.map((w,i)=>`<button type="button" data-qf="${esc(w)}" aria-pressed="${i===0}">${esc(w)}</button>`).join('')}</div>
-      <ul class="qlist" id="qlist">${QUESTIONS.map(q=>`<li data-who="${esc(q.soon?'Not yet covered':q.who)}"><a href="${q.to}"><span>${esc(q.q)}</span><span class="r">${q.soon?'<span class="chip soon">Coming soon</span>':`<span class="chip">${esc(q.who)}</span>`}</span></a></li>`).join('')}</ul>
+      <ul class="qlist" id="qlist">${QUESTIONS.map(q=>`<li data-who="${esc(q.soon?'Open questions':q.who)}"><a href="${q.to}"><span>${esc(q.q)}</span><span class="r">${q.soon?'<span class="chip soon">Open question</span>':q.partial?'<span class="chip soon">Partly answered</span>':`<span class="chip">${esc(q.who)}</span>`}</span></a></li>`).join('')}</ul>
     </section></div>
     ${footer()}`;
 }
 function footer(){
   return `<footer class="footer on-dark"><div class="page">
-    <div><h4>Related</h4><a href="https://recco-brand.figma.site/" target="_blank" rel="noopener">RECCo Brand Hub ↗</a><br><a href="#/roles">Roles &amp; permissions</a><br><a href="#/coming-soon">Not yet covered</a></div>
+    <div><h4>Related</h4><a href="https://recco-brand.figma.site/" target="_blank" rel="noopener">RECCo Brand Hub ↗</a><br><a href="#/roles">Roles &amp; permissions</a><br><a href="#/qa">Q&amp;As</a></div>
     <div><h4>RECCo</h4><a href="https://retailenergycode.co.uk" target="_blank" rel="noopener">retailenergycode.co.uk ↗</a><br>info@retailenergycode.co.uk<br>Follow us on LinkedIn · Join the Inside RECCo newsletter</div>
     <div class="box"><h4>Feedback on this training</h4><p>Spotted something missing, unclear or out of date? Email the team with the module and step, and we will fix it in the next version.</p><div class="copyrow"><code>info@retailenergycode.co.uk</code><button type="button" class="btn btn-primary btn-sm" data-copy="info@retailenergycode.co.uk">Copy address</button></div></div>
     <div class="legal">Retail Energy Code Company ©2026. This content has been classified as ‘Internal &amp; Partners’ by RECCo and should be handled in line with RECCo data handling requirements. If you have received it in error, please advise the sender or author and delete it.</div>
@@ -1357,13 +1819,15 @@ function renderRoles(){
   const toc=[['explore','Permission explorer'],['defs','Role definitions'],['views','Your modules, by role'],['types','Page types']];
   return `<div class="band on-dark"><div class="page">${crumbs('Roles & permissions')}<div class="eyebrow">Foundations</div><h1 class="title">Roles &amp; permissions</h1><p class="lede">The DSP roles used across the REC Portal, what each one can do, and the modules in this pack that apply to you.</p></div></div>
   <div class="page"><div class="with-toc"><div>
-    <section class="section" id="explore"><h2>Permission explorer</h2><p class="sub-l">Pick a role to see what it can and cannot do. The matrix below highlights the same role; module names link to the guide.</p>
+    <section class="section" id="explore"><h2>Permission explorer</h2><p class="sub-l">Pick a role to highlight it in the matrix and see what it can and cannot do. Module names link to the guide.</p>
       <div class="explorer"><div class="seg" role="group" aria-label="Choose a role to explore">${MATRIX_COLS.map(c=>`<button type="button" data-explore="${c}" aria-pressed="${c===exploreRole}">${esc(roleName(c))}</button>`).join('')}</div>
-      <div id="exploreSummary" aria-live="polite">${exploreSummary()}</div>
       <div class="tbl-wrap"><table class="matrix" id="matrix"><caption class="sr">Which roles can perform which modules</caption><thead><tr><th scope="col">Module</th>${MATRIX_COLS.map(c=>`<th scope="col" data-col="${c}"><button type="button" data-explore="${c}">${esc(roleName(c))}</button></th>`).join('')}</tr></thead>
-      <tbody>${MATRIX.map(([label,allowed,link])=>`<tr><td>${link?`<a href="#/guide/${link}">${esc(label)}</a>`:esc(label)}</td>${MATRIX_COLS.map(c=>allowed.includes(c)?`<td class="y" data-col="${c}"><span aria-label="Yes">✓</span></td>`:`<td class="n" data-col="${c}"><span class="sr">No</span>·</td>`).join('')}</tr>`).join('')}</tbody></table></div>
+      <tbody>${MATRIX.map(([label,allowed,link,part=[]])=>`<tr><td>${link?`<a href="#/guide/${link}">${esc(label)}</a>`:esc(label)}</td>${MATRIX_COLS.map(c=>allowed.includes(c)?`<td class="y" data-col="${c}"><span aria-label="Full access">✓</span></td>`:part.includes(c)?`<td class="p" data-col="${c}"><span aria-label="Limited access"></span></td>`:`<td class="n" data-col="${c}"><span class="sr">No access</span>·</td>`).join('')}</tr>`).join('')}</tbody></table></div>
+      <div class="mlegend" aria-hidden="true"><span><i class="y">✓</i>Full access</span><span><i class="p"></i>Limited access (lighter shading in the training pack’s matrix)</span><span><i class="n">·</i>No access</span></div>
+      <div id="exploreSummary" aria-live="polite">${exploreSummary()}</div>
+      <div class="amap-cta"><div><b>See it as a picture</b><span class="muted">The access map shows how far each role can go in each area, from viewing to publishing.</span></div><button type="button" class="btn btn-primary" data-action="open-amap">${I.map}Open access map</button></div>
       <p class="muted" style="font-size:13.5px">Super User is restricted to the Capgemini DSP team and RECCo IT. Code Manager Master User is the highest role a Code Manager holds.</p>
-      <div class="callout warn">${I.info}<div><b>Being confirmed.</b> This matrix is transcribed from the training pack. Some module pages list extra roles (for example, the Publish module names the News &amp; Events Manager). Check with your DSP role owner if what you see in the CMS differs.</div></div>
+      <div class="callout warn">${I.info}<div><b>Being confirmed.</b> This matrix is transcribed from the training pack (October 2026). A few sources still disagree on media access: the matrix gives the Knowledge Content Manager and News &amp; Events Manager limited access, the media module lists News &amp; Events Analysts and Managers, and the <a href="#/qa#qa-media">Q&amp;A answer</a> says it varies by area. Check with your DSP role owner if what you see in the CMS differs.</div></div>
       </div></section>
     <section class="section" id="defs"><h2>Role definitions</h2><p class="sub-l">Seven roles. Everyone starts as an Authenticated User; the others are assigned by a Code Manager Master User or Super User.</p>
       <div class="roledefs">${ROLES.map(r=>`<div class="roledef"><div class="h"><h3>${esc(r.name)}</h3>${r.alias?`<span class="chip">${esc(r.alias)}</span>`:r.id==='authenticated'?'<span class="chip auth">Everyone</span>':''}</div><p>${esc(r.desc)}</p><button type="button" class="linkbtn" data-explore="${r.id}" data-scroll="explore">Explore permissions →</button></div>`).join('')}</div></section>
@@ -1373,13 +1837,14 @@ function renderRoles(){
         <div style="margin-top:14px">${S.role===v.id?'<span class="chip done">This is your learning path</span>':`<button type="button" class="btn btn-ghost btn-sm" data-role="${v.id}" data-stay="1">Use this as my learning path</button>`}</div></div>`).join('')}
     </section>
     <section class="section" id="types"><h2>Portal page, wiki page, news &amp; events page</h2><p class="sub-l">Understanding the differences before you choose what to create.</p>
-      <div class="types">${PAGE_TYPES.map(([a,b],i)=>`<div class="type"><h3>${esc(a)}</h3><p>${esc(b)}</p>${['<span class="chip">Free format</span>','<span class="chip">Pre-defined structure</span>','<span class="chip">Structured record</span>','<span class="chip soon">Being defined</span>'][i]||''}</div>`).join('')}</div></section>
+      <div class="types">${PAGE_TYPES.map(([a,b],i)=>`<div class="type"><h3>${esc(a)}</h3><p>${esc(b)}</p>${['<span class="chip">Free format</span>','<span class="chip">Pre-defined structure</span>','<span class="chip">Structured record</span>','<span class="chip">Knowledge Centre</span>'][i]||''}</div>`).join('')}</div></section>
   </div>${tocHTML(toc)}</div></div>`;
 }
 function exploreSummary(){
   const r=ROLES.find(x=>x.id===exploreRole);
-  const can=MATRIX.filter(([,a])=>a.includes(exploreRole)), cannot=MATRIX.filter(([,a])=>!a.includes(exploreRole));
-  const li=([l,,link])=>`<li>${link?`<a href="#/guide/${link}">${esc(l)}</a>`:esc(l)}</li>`;
+  const lvl=row=>row[1].includes(exploreRole)?2:(row[3]||[]).includes(exploreRole)?1:0;
+  const can=MATRIX.filter(r=>lvl(r)>0), cannot=MATRIX.filter(r=>lvl(r)===0);
+  const li=r=>{const [l,,link]=r;return `<li>${link?`<a href="#/guide/${link}">${esc(l)}</a>`:esc(l)}${lvl(r)===1?' <span class="chip soon" style="font-size:11px;padding:1px 7px">Limited</span>':''}</li>`;};
   return `<div class="summary"><div class="who"><div class="eyebrow">${r.alias?esc(r.alias):'Role'}</div><h3>${esc(r.name)}</h3><p>${esc(r.desc)}</p></div>
     <div class="col can"><h4>Can (${can.length})</h4><ul>${can.map(li).join('')}</ul></div>
     <div class="col cannot"><h4>Cannot (${cannot.length})</h4><ul>${cannot.length?cannot.map(li).join(''):'<li>Nothing in this matrix</li>'}</ul></div></div>`;
@@ -1388,7 +1853,9 @@ function applyExplore(){
   $$('[data-explore]').forEach(b=>{ if(b.closest('.seg')) b.setAttribute('aria-pressed',b.dataset.explore===exploreRole); });
   $$('#matrix [data-col]').forEach(c=>c.classList.toggle('col-on',c.dataset.col===exploreRole));
   const s=$('#exploreSummary'); if(s) s.innerHTML=exploreSummary();
+  if($('#amapModal')) paintAccessMap();
 }
+
 
 /* ---------- MODULE PAGE ---------- */
 function tocHTML(items){
@@ -1399,7 +1866,7 @@ function moduleHead(id){
   const firstUndone=items.find(x=>!isDone(id,x.key));
   const walkLabel=!p.stepsDone?'Start guided walkthrough':firstUndone?`Resume at step ${items.indexOf(firstUndone)+1}`:'Replay walkthrough';
   const walkHref=`#/guide/${id}/walk${firstUndone?'#'+firstUndone.key:''}`;
-  const notice = S.role&&S.role!=='all'&&!inPath(id)?`<div class="notice">${I.info}<span>This module isn’t part of your role’s learning path. You can still read it, but you may not have permission to do this in the CMS.</span></div>`:'';
+  const notice = S.role&&S.role!=='all'&&!inPath(id)&&id!=='roles'?`<div class="notice">${I.info}<span>This module isn’t part of your role’s learning path. You can still read it, but you may not have permission to do this in the CMS.</span></div>`:'';
   return `<div class="band on-dark"><div class="page">${crumbs('<a href="#/">Modules</a>',esc(g.title))}
     <div class="mhead"><div><div class="eyebrow">Module ${m.n}${g.soon?' · Coming soon':''}</div><h1 class="title">${esc(g.title)}</h1><p class="lede">${esc(g.lede)}</p>
       <div class="meta"><span>For:</span>${chips(g.roles)}</div>
@@ -1431,8 +1898,12 @@ function renderGuide(id){
         <div class="panels"><div class="panel"><h3><i></i>Why use them</h3>${list(g.intro.why)}</div><div class="panel validate"><h3><i></i>What they replace</h3>${list(g.intro.replace)}</div><div class="panel can"><h3><i></i>Where to find help</h3>${list(g.intro.help)}</div></div></section>
         <section class="section" id="chooser"><h2>Which component should I use?</h2><p class="sub-l">Start from what you need to do. The picker shows the component, when to use it, when to avoid it and the sizing that keeps pages consistent.</p>
         <div class="viewtoggle" role="group" aria-label="Choose view"><button type="button" data-cview="pick" aria-pressed="true">Picker</button><button type="button" data-cview="table" aria-pressed="false">Full table</button></div>
-        <div id="cview">${chooserPicker(g)}</div></section>`;
-      toc.push(['what','What components are'],['chooser','Which component?']);
+        <div id="cview">${chooserPicker(g)}</div></section>
+        <section class="section" id="live"><h2>The live component list</h2><p class="sub-l">Every component exists on one page in the CMS, built with placeholder content and labelled with the image size it expects. Open it alongside this guide to see each component as it really renders.</p>
+        <div class="cl-card"><div class="cl-shot" aria-hidden="true"><span class="b1"></span><span class="b2"></span><span class="b3"></span><span class="b4"></span><span class="b5"></span></div><div class="cl-body"><div class="chips"><span class="chip soon">${esc(COMPONENT_LIST.env)}</span><span class="chip">${COMPONENT_LIST.items.length} components</span></div><h3>Components Lists</h3><p class="path">${esc(COMPONENT_LIST.url.replace('https://',''))}</p><p class="muted">It opens in a new tab. It can’t be shown inside this training because the CMS blocks embedding, and the address will change when the Portal goes live.</p>${clLink()}</div></div>
+        <div class="tbl-wrap"><table class="cltable"><caption class="sr">Components on the live component list and their image sizes</caption><thead><tr><th scope="col">Component</th><th scope="col">Image size (px)</th><th scope="col">What it’s for</th></tr></thead><tbody>${COMPONENT_LIST.items.map(c=>`<tr><td><b>${esc(c.name)}</b></td><td class="tnum">${c.size?esc(c.size):'<span class="muted">No image</span>'}</td><td>${esc(c.note)}${c.deck?`<div class="cl-diff">${I.info}<span>${esc(c.deck)}. Check which size is current.</span></div>`:''}</td></tr>`).join('')}</tbody></table></div>
+        <p class="muted" style="font-size:13px;margin-top:10px">Sizes read from the component list on ${esc(COMPONENT_LIST.checked)}. Where they differ from the training pack, both are shown until the deck owner confirms.</p></section>`;
+      toc.push(['what','What components are'],['chooser','Which component?'],['live','Live component list']);
     }
     if(g.expect){
       body+=`<section class="section" id="expect"><h2>What to expect</h2><p class="sub-l">Set the quality benchmark before you start building.</p>
@@ -1475,7 +1946,8 @@ function componentDetail(r){
   return `<div class="hd"><div class="k">Component</div><h3>${esc(r[1])}</h3><p>${esc(r[0])}</p></div><div class="bd">
     <div class="row"><span class="i ok">✓</span><div><h4>When to use</h4><p>${esc(r[2])}</p></div></div>
     <div class="row"><span class="i no">✕</span><div><h4>Avoid when</h4><p>${esc(r[3])}</p></div></div>
-    <div class="row"><span class="i tip">i</span><div><h4>Key tips (incl. sizing)</h4><p>${esc(r[4])}</p></div></div></div>`;
+    <div class="row"><span class="i tip">i</span><div><h4>Key tips (incl. sizing)</h4><p>${esc(r[4])}</p></div></div>
+    <a class="cl-mini" href="#live">See every component and its live image size →</a></div>`;
 }
 function chooserTable(g){
   return `<div class="tbl-wrap"><table><thead><tr><th scope="col">User need / scenario</th><th scope="col">Component</th><th scope="col">When to use</th><th scope="col">Avoid when</th><th scope="col">Key tips (incl. sizing)</th></tr></thead><tbody>${g.chooser.map(r=>`<tr>${r.map((c,i)=>`<td>${i===1?`<b>${esc(c)}</b>`:esc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
@@ -1606,20 +2078,20 @@ function openReset(scope,modId){
   document.body.appendChild(back);
   (back.querySelector('input')||back.querySelector('[data-action=reset-confirm]')).focus();
 }
-function closeReset(){ const m=$('#resetModal'); if(!m) return; m.remove(); const o=resetCtx?.opener; resetCtx=null; if(o&&document.contains(o)) o.focus(); }
+function closeReset(){ if($('#resetModal')) closeAnyModal(); }
 function doReset(){
   if(!resetCtx) return;
   const backup=JSON.parse(JSON.stringify(S)); let label, goHome=false;
   if(resetCtx.scope==='module'){
-    const id=resetCtx.modId; delete S.steps[id]; delete S.quiz[id]; label=`Module ${modOf(id).n} restarted.`;
+    const id=resetCtx.modId; delete S.steps[id]; delete S.quiz[id]; delete S.completedAt; label=`Module ${modOf(id).n} restarted.`;
   } else {
     const st=$('#rsSteps')?.checked, vd=$('#rsVideos')?.checked, rl=$('#rsRole')?.checked;
     if(!st&&!vd&&!rl){ toast('Choose at least one thing to clear'); return; }
-    if(st){ S.steps={}; S.quiz={}; } if(vd) S.watched=[]; if(rl) S.role=null;
+    if(st){ S.steps={}; S.quiz={}; delete S.completedAt; } if(vd) S.watched=[]; if(rl) S.role=null;
     label='Training restarted.'; goHome=true;
   }
   save(); const scope=resetCtx.scope, mod=resetCtx.modId;
-  $('#resetModal')?.remove(); resetCtx=null;
+  $('#resetModal')?.remove(); document.body.classList.remove('modal-open'); resetCtx=null;
   lastReset={backup,label,scope,mod,fresh:true};
   if(goHome&&parse().path!=='/') location.hash='#/'; else render();
 }
@@ -1627,7 +2099,178 @@ function undoReset(){ if(!lastReset) return; S=lastReset.backup; save(); lastRes
 function resetBanner(){
   if(!lastReset) return '';
   const first=lastReset.scope==='module'?`#/guide/${lastReset.mod}/walk`:(()=>{const id=pathIds().find(x=>!modOf(x).soon);return id?`#/guide/${id}`:'#/';})();
-  return `<div class="resetbar" role="status"><div class="in">${I.restart}<span>${esc(lastReset.label)} Your progress is back at the start.</span><span class="grow"></span><button type="button" class="btn btn-ghost btn-sm" data-action="reset-undo">Undo</button><a class="btn btn-primary btn-sm" href="${first}">${lastReset.scope==='module'?'Start from step 1':'Start from the first module'}</a></div></div>`;
+  return `<div class="resetbar" role="status"><div class="in">${I.restart}<span>${esc(lastReset.label)}${lastReset.scope==='restore'?'':' Your progress is back at the start.'}</span><span class="grow"></span><button type="button" class="btn btn-ghost btn-sm" data-action="reset-undo">Undo</button>${lastReset.scope==='restore'?'':`<a class="btn btn-primary btn-sm" href="${first}">${lastReset.scope==='module'?'Start from step 1':'Start from the first module'}</a>`}</div></div>`;
+}
+
+/* ---------- GENERIC MODAL ---------- */
+let modalOpener=null;
+function openModal(id,html,cls=''){
+  closeAnyModal(true);
+  modalOpener=document.activeElement;
+  const back=document.createElement('div'); back.className='modal-back'; back.id=id;
+  back.innerHTML=`<div class="modal ${cls}" role="dialog" aria-modal="true" aria-labelledby="${id}Title">${html}</div>`;
+  back.addEventListener('click',e=>{ if(e.target===back) closeAnyModal(); });
+  document.body.appendChild(back); document.body.classList.add('modal-open');
+  return back;
+}
+function closeAnyModal(silent){
+  const m=document.querySelector('.modal-back'); if(!m) return;
+  if(m.id==='resetModal'){ m.remove(); document.body.classList.remove('modal-open'); const o=resetCtx?.opener; resetCtx=null; if(!silent&&o&&document.contains(o)) o.focus(); return; }
+  m.remove(); document.body.classList.remove('modal-open');
+  const o=modalOpener; modalOpener=null; if(!silent&&o&&document.contains(o)) o.focus();
+}
+
+/* ---------- ACCESS MAP (modal) ----------
+   Reads ACCESS_LANES (data) and MATRIX. Each lane is an area of the CMS;
+   its stages run from viewing to publishing. A role "reaches" a stage
+   when the matching MATRIX row gives it full or limited access. */
+let amapCompare='';
+const rowByLabel=l=>MATRIX.find(r=>r[0]===l);
+const stageLevel=(label,role)=>{const r=rowByLabel(label); if(!r) return 0; return r[1].includes(role)?2:(r[3]||[]).includes(role)?1:0;};
+const LV=['None','Limited','Full'];
+function reachOf(role){ let got=0,max=0; ACCESS_LANES.forEach(l=>l.stages.forEach(([name,lab])=>{ if(lab==='View pages, wiki, events, news') return; max+=2; got+=stageLevel(lab,role); })); return {got,max,pct:Math.round(got/max*100)}; }
+function laneTop(lane,role){ let top=null; lane.stages.forEach(([name,lab])=>{ const v=stageLevel(lab,role); if(v) top={name,v}; }); return top; }
+function roleSentence(role){
+  const verbs={'View':'view','Search & manage':'search and manage','Create':'create','Publish':'publish','Upload':'upload to','Administer':'administer'};
+  const groups=[], none=[];
+  ACCESS_LANES.forEach(l=>{ const t=laneTop(l,role); if(!t){ none.push(l.noun); return; }
+    const key=t.name+'|'+t.v; let g=groups.find(x=>x.key===key); if(!g){ g={key,verb:verbs[t.name]||t.name.toLowerCase(),lim:t.v===1,areas:[]}; groups.push(g);} g.areas.push(l.short); });
+  let s=groups.length?'Can '+listJoin(groups.map(g=>`${g.verb} ${listJoin(g.areas)}${g.lim?' (limited)':''}`))+'.':'No access in this matrix.';
+  if(none.length) s+=` No access to ${listJoin(none,'or')}.`;
+  return s;
+}
+function listJoin(a,c='and'){ return a.length<2?(a[0]||''):a.slice(0,-1).join(', ')+` ${c} `+a[a.length-1]; }
+function openAccessMap(){
+  const html=`<div class="mhd"><div><div class="eyebrow">Roles &amp; permissions</div><h2 id="amapModalTitle">Access map</h2><p>How far each role can go in each area of the CMS, from viewing to publishing.</p></div><button type="button" class="iconbtn" data-action="close-modal" aria-label="Close access map">${I.x}</button></div>
+  <div class="amap"><nav class="amap-roles" aria-label="Choose a role">${MATRIX_COLS.map(c=>`<button type="button" data-amap="${c}"><span class="nm">${esc(roleName(c))}</span><span class="rb"><i></i></span><span class="rp tnum"></span></button>`).join('')}</nav>
+    <div class="amap-main" aria-live="polite"><div id="amapHead"></div><div id="amapLanes"></div></div></div>
+  <div class="mft"><div class="amap-nav"><button type="button" class="btn btn-ghost btn-sm" data-action="amap-prev">${I.left}Previous role</button><button type="button" class="btn btn-ghost btn-sm" data-action="amap-next">Next role${I.right}</button><span class="hint muted">or use <kbd>↑</kbd> <kbd>↓</kbd></span></div>
+    <label class="amap-cmp"><span>Compare with</span><select id="amapCompare"><option value="">No comparison</option>${MATRIX_COLS.map(c=>`<option value="${c}" ${c===amapCompare?'selected':''}>${esc(roleName(c))}</option>`).join('')}</select></label></div>`;
+  openModal('amapModal',html,'wide');
+  paintAccessMap();
+  $(`[data-amap="${exploreRole}"]`)?.focus();
+}
+function paintAccessMap(){
+  const box=$('#amapModal'); if(!box) return;
+  const role=exploreRole, r=ROLES.find(x=>x.id===role), cmp=amapCompare&&amapCompare!==role?amapCompare:'';
+  $$('[data-amap]').forEach(b=>{ const c=b.dataset.amap, re=reachOf(c), on=c===role; b.setAttribute('aria-pressed',on); b.classList.toggle('cmp',c===cmp); b.querySelector('.rb i').style.width=re.pct+'%'; b.querySelector('.rp').textContent=re.pct+'%'; b.setAttribute('aria-label',`${roleName(c)}, ${re.pct}% of editing and publishing access`); });
+  const re=reachOf(role);
+  $('#amapHead').innerHTML=`<div class="amap-who"><div><h3>${esc(r.name)}</h3>${r.alias?`<span class="chip">${esc(r.alias)}</span>`:r.id==='authenticated'?'<span class="chip auth">Everyone</span>':''}</div><div class="amap-score"><b class="tnum">${re.pct}%</b><span>of editing and publishing access</span></div></div><p class="amap-sum">${esc(roleSentence(role))}</p>${cmp?`<p class="amap-vs"><span class="sw"></span>Compared with <b>${esc(roleName(cmp))}</b>: ${esc(roleSentence(cmp))}</p>`:''}`;
+  $('#amapLanes').innerHTML=ACCESS_LANES.map(l=>{
+    const top=laneTop(l,role);
+    const badge=!top?'<span class="lane-badge none">No access</span>':`<span class="lane-badge ${top.v===1?'lim':''}">${top.name==='View'?'View only':'Up to '+esc(top.name.toLowerCase())}${top.v===1?' · limited':''}</span>`;
+    return `<section class="lane"><div class="lane-h"><h4>${esc(l.area)}</h4>${badge}</div>
+      <ol class="track" style="--n:${l.stages.length}">${l.stages.map(([name,lab],i)=>{const v=stageLevel(lab,role), nx=l.stages[i+1]?stageLevel(l.stages[i+1][1],role):0, cv=cmp?stageLevel(lab,cmp):null;
+        return `<li class="st lv${v} ${nx?'link':''}"><span class="node" aria-hidden="true">${v===2?I.check:''}</span><span class="sl">${esc(name)}</span><span class="sv">${LV[v]}</span>${cmp?`<span class="cv ${cv!==v?'diff':''}" title="${esc(roleName(cmp))}">vs ${LV[cv]}</span>`:''}<span class="sr">${esc(name)}: ${LV[v]}${cmp?`; ${roleName(cmp)}: ${LV[cv]}`:''}</span></li>`;}).join('')}</ol></section>`;}).join('')+`<p class="amap-note muted">Super User and Code Manager Master User have the same access in this matrix. Limited is the lighter shading in the training pack’s matrix. Source: <a href="#/roles#matrix" data-action="close-modal">roles × modules matrix</a>.</p>`;
+}
+function amapStep(d){ const i=MATRIX_COLS.indexOf(exploreRole); exploreRole=MATRIX_COLS[(i+d+MATRIX_COLS.length)%MATRIX_COLS.length]; applyExplore(); $(`[data-amap="${exploreRole}"]`)?.focus(); }
+
+/* ---------- COMPLETION + CERTIFICATE ----------
+   Generated in the learner's browser from their saved progress. It is a
+   personal record, not verified by RECCo (that needs sign-in; see README). */
+function pathModules(){ return pathIds().filter(id=>!modOf(id).soon&&!isOpt(id)); }
+function pathComplete(){ if(!S.role) return false; const ids=pathModules(); return ids.length>0&&ids.every(id=>{const p=prog(id);return p.total&&p.done===p.total;}); }
+function checkCompletion(){ const done=pathComplete(); if(done&&!S.completedAt){ S.completedAt=new Date().toISOString(); save(); setTimeout(()=>toast('Learning path complete. Your certificate is ready.'),400); } else if(!done&&S.completedAt){ delete S.completedAt; save(); } }
+function certRef(){ const s=`${S.learnerName||''}|${S.role}|${S.completedAt}`; let h=2166136261; for(const ch of s){ h^=ch.charCodeAt(0); h=Math.imul(h,16777619)>>>0; } const x=h.toString(16).toUpperCase().padStart(8,'0'); return `CMT-${x.slice(0,4)}-${x.slice(4)}`; }
+const fmtDate=iso=>new Date(iso).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+function pathLabel(){ const v=ROLE_VIEWS.find(r=>r.id===S.role); return v?v.label:'All modules'; }
+function openCertificate(){
+  const ids=pathModules(), done=pathComplete();
+  let body;
+  if(!S.role){
+    body=`<p>Choose your role first. Your certificate covers the modules in your learning path.</p><div class="mfoot"><a class="btn btn-primary" href="#/" data-action="close-modal">Choose your role</a></div>`;
+  } else if(!done){
+    const left=ids.filter(id=>{const p=prog(id);return !(p.total&&p.done===p.total);});
+    body=`<div class="cert-lock">${I.lock}<div><b>${left.length} of ${ids.length} module${ids.length>1?'s':''} to go</b><span>Finish every step and pass each knowledge check in your learning path (${esc(pathLabel())}) to unlock your certificate.</span></div></div>
+      <ul class="cert-left">${ids.map(id=>{const m=modOf(id),p=prog(id),ok=p.total&&p.done===p.total;return `<li class="${ok?'ok':''}"><span class="d">${ok?I.check:m.n}</span><a href="#/guide/${id}" data-action="close-modal">${esc(m.title)}</a><span class="muted">${ok?'Complete':`${p.done} of ${p.total}`}</span></li>`;}).join('')}</ul>`;
+  } else {
+    body=`<div class="cert-form"><label for="certName">Your name, as it should appear</label><input id="certName" type="text" autocomplete="name" value="${esc(S.learnerName||'')}" placeholder="e.g. Alex Morgan"></div>
+      <div class="cert-prev"><canvas id="certCanvas" width="2339" height="1654" role="img" aria-label="Certificate preview"></canvas></div>
+      <p class="mnote">This certificate is generated in your browser from the progress saved here. It’s a personal record and isn’t verified by RECCo.</p>
+      <div class="mfoot"><button type="button" class="btn btn-ghost" data-action="cert-png">${I.download}Image (PNG)</button><button type="button" class="btn btn-primary" data-action="cert-pdf">${I.download}Download PDF</button></div>`;
+  }
+  openModal('certModal',`<div class="mhd"><div><div class="eyebrow">${done?'Well done':'Certificate'}</div><h2 id="certModalTitle">${done?'Your certificate of completion':'Certificate of completion'}</h2></div><button type="button" class="iconbtn" data-action="close-modal" aria-label="Close">${I.x}</button></div>${body}`,done?'wide':'');
+  if(done){ drawCert(); $('#certName')?.focus(); } else $('.modal-back .iconbtn')?.focus();
+}
+async function drawCert(){
+  const cv=$('#certCanvas'); if(!cv) return; const x=cv.getContext('2d'), W=cv.width, H=cv.height;
+  try{ await document.fonts.ready; await Promise.all(['800 60px Figtree','600 30px Figtree','400 30px Figtree','italic 700 60px "Playfair Display"'].map(f=>document.fonts.load(f))); }catch(e){}
+  const F=(w,s,fam='Figtree')=>`${w} ${s}px ${fam==='Figtree'?'Figtree, Arial, sans-serif':'"Playfair Display", Georgia, serif'}`;
+  x.fillStyle='#F8F8F8'; x.fillRect(0,0,W,H);
+  x.fillStyle='#201E2E'; x.fillRect(0,0,W,330);
+  x.fillStyle='#1EF395'; x.fillRect(0,330,W,14);
+  // logo (official paths)
+  const P=LOGO_PATHS; x.save(); x.translate(150,105); x.scale(1.45,1.45);
+  x.fillStyle='#4D38F5'; x.fill(new Path2D(P[0])); x.fillStyle='#F8F8F8'; P.slice(1).forEach((d,i)=>x.fill(new Path2D(d),i===0?'nonzero':'evenodd')); x.restore();
+  x.fillStyle='#B9B6D2'; x.font=F(600,34); x.textAlign='right'; x.fillText('REC PORTAL · CONTENT MANAGEMENT TRAINING',W-150,180);
+  x.save(); x.translate(1640,470); x.scale(4.9,4.9); x.fillStyle='#E9E7FE'; x.fill(new Path2D(P[0])); x.restore();
+  x.textAlign='left'; x.fillStyle='#201E2E'; x.font=F(800,104); x.fillText('Certificate of',150,560);
+  const w1=x.measureText('Certificate of ').width; x.fillStyle='#4D38F5'; x.font=F('italic 700',104,'pf'); x.fillText('completion',150+w1,560);
+  x.fillStyle='#4A5578'; x.font=F(400,40); x.fillText('This certifies that',150,690);
+  const name=(S.learnerName||'').trim()||'Your name';
+  x.fillStyle=(S.learnerName||'').trim()?'#201E2E':'#B9C0D4'; let fs=120; x.font=F(800,fs); while(x.measureText(name).width>W-300&&fs>60){fs-=6;x.font=F(800,fs);} x.fillText(name,150,840);
+  x.fillStyle='#4D38F5'; x.fillRect(150,880,220,8);
+  const ids=pathModules(), checks=ids.filter(id=>QUIZZES[id]).length;
+  x.fillStyle='#201E2E'; x.font=F(400,42);
+  x.fillText('has completed the REC Portal content management training,',150,990);
+  x.fillText(pathCourse()?`${pathCourse()} course (${pathLabel()}).`:`${pathLabel()} learning path.`,150,1050);
+  x.fillStyle='#4A5578'; x.font=F(600,36);
+  x.fillText(`${ids.length} modules  ·  ${ids.reduce((n,id)=>n+itemsOf(id).length,0)} steps  ·  ${checks} knowledge checks passed`,150,1140);
+  // details row
+  const row=(lab,val,cx)=>{x.fillStyle='#4A5578';x.font=F(600,30);x.fillText(lab.toUpperCase(),cx,1390);x.fillStyle='#201E2E';x.font=F(700,44);x.fillText(val,cx,1450);};
+  row('Completed',fmtDate(S.completedAt),150); row('Reference',certRef(),900); row('Issued by','Retail Energy Code Company',1450);
+  x.fillStyle='#DCDFEA'; x.fillRect(150,1520,W-300,3);
+  x.fillStyle='#4A5578'; x.font=F(400,28); x.fillText('Generated from progress recorded in the learner’s browser. A personal record of completion, not verified by RECCo.',150,1580);
+}
+function certBlob(cb){ $('#certCanvas').toBlob(cb,'image/png'); }
+/* Downloads: inside the Claude artifact viewer, files go through its
+   downloads capability (the viewer confirms); on the published site, a
+   normal browser download. Resolves true when a file was offered. */
+let dlCap; async function downloadsCap(){ if(dlCap!==undefined) return dlCap; if(!(window.claude&&window.claude.use)) return dlCap=null; try{ dlCap=await Promise.race([window.claude.use('downloads'),new Promise(r=>setTimeout(()=>r(null),4000))]); }catch(e){ dlCap=null; } return dlCap; }
+async function saveBlob(blob,name){
+  const dl=await downloadsCap();
+  if(dl){ try{ await dl.save({filename:name,data:blob}); return true; }catch(e){ if(e&&e.code==='declined') return false; if(e&&e.code==='rate_limited'){ toast('A download is already waiting for your answer'); return false; } toast('Downloads aren’t available here'); return false; } }
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; document.body.appendChild(a); a.click(); setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},1500); return true;
+}
+const certFile=ext=>`REC-Portal-content-training-certificate-${((S.learnerName||'learner').trim().replace(/[^\w]+/g,'-')||'learner')}.${ext}`;
+function loadScript(src){ return new Promise((res,rej)=>{ if(window.jspdf) return res(); const s=document.createElement('script'); s.src=src; s.onload=res; s.onerror=rej; document.head.appendChild(s); }); }
+async function certPDF(){
+  await drawCert();
+  try{ await loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js');
+    const {jsPDF}=window.jspdf; const doc=new jsPDF({orientation:'landscape',unit:'mm',format:'a4'});
+    doc.setProperties({title:'REC Portal content management training: certificate of completion',author:'Retail Energy Code Company'});
+    doc.addImage($('#certCanvas').toDataURL('image/png'),'PNG',0,0,297,210); if(await saveBlob(doc.output('blob'),certFile('pdf'))) toast('Certificate downloaded');
+  }catch(e){ toast('The PDF tool didn’t load. Downloading an image instead.'); certBlob(async b=>{ if(await saveBlob(b,certFile('png'))) toast('Certificate image downloaded'); }); }
+}
+
+/* ---------- SAVE / RESTORE PROGRESS (code) ----------
+   A portable copy of this browser's progress, so learners can carry on
+   after clearing their browser or on another device. No server involved. */
+const CODE_PREFIX='RECTRAIN1.';
+function progressCode(){ const o={v:1,role:S.role,steps:S.steps,quiz:S.quiz,watched:S.watched,name:S.learnerName||'',done:S.completedAt||''}; return CODE_PREFIX+btoa(unescape(encodeURIComponent(JSON.stringify(o)))); }
+function parseCode(c){ c=(c||'').trim().replace(/\s+/g,''); if(!c.startsWith(CODE_PREFIX)) throw new Error('prefix'); const o=JSON.parse(decodeURIComponent(escape(atob(c.slice(CODE_PREFIX.length))))); if(o.v!==1||typeof o.steps!=='object') throw new Error('shape'); return o; }
+function openProgress(tab){
+  const code=progressCode(), o=overall();
+  openModal('progModal',`<div class="mhd"><div><div class="eyebrow">Your progress</div><h2 id="progModalTitle">Save or restore progress</h2><p>Progress is saved in this browser only. Clearing your browser data, or switching device, starts you from scratch. Keep a progress code to pick up where you left off.</p></div><button type="button" class="iconbtn" data-action="close-modal" aria-label="Close">${I.x}</button></div>
+    <div class="seg ptabs" role="tablist" aria-label="Save or restore"><button type="button" role="tab" id="ptab-save" aria-selected="${tab!=='restore'}" aria-controls="ppan-save">Save a code</button><button type="button" role="tab" id="ptab-restore" aria-selected="${tab==='restore'}" aria-controls="ppan-restore">Restore from a code</button></div>
+    <div role="tabpanel" id="ppan-save" aria-labelledby="ptab-save" ${tab==='restore'?'hidden':''}>
+      <p class="mnote">${S.role?`${o.pct}% of your learning path, ${o.steps} steps and ${o.checks} knowledge checks.`:'You haven’t started yet, so there’s nothing much to save.'} Copy this code and keep it somewhere safe, such as an email to yourself.</p>
+      <label class="sr" for="progCode">Your progress code</label><textarea id="progCode" readonly rows="4">${code}</textarea>
+      <div class="mfoot"><button type="button" class="btn btn-ghost" data-action="prog-file">${I.download}Download as a file</button><button type="button" class="btn btn-primary" data-action="prog-copy">${I.save}Copy code</button></div></div>
+    <div role="tabpanel" id="ppan-restore" aria-labelledby="ptab-restore" ${tab==='restore'?'':'hidden'}>
+      <p class="mnote">Paste a code you saved earlier. It replaces the progress in this browser; you can undo straight afterwards.</p>
+      <label class="sr" for="progIn">Paste your progress code</label><textarea id="progIn" rows="4" placeholder="RECTRAIN1.…"></textarea>
+      <p class="perr" id="progErr" role="alert" hidden>That doesn’t look like a progress code from this training. Check you copied all of it, starting with RECTRAIN1.</p>
+      <div class="mfoot"><button type="button" class="btn btn-primary" data-action="prog-restore">Restore progress</button></div></div>`);
+  wireTabs(); (tab==='restore'?$('#progIn'):$('[data-action=prog-copy]')).focus();
+}
+function restoreFromCode(){
+  let o; try{ o=parseCode($('#progIn').value); }catch(e){ const er=$('#progErr'); er.hidden=false; $('#progIn').focus(); return; }
+  const backup=JSON.parse(JSON.stringify(S));
+  S.role=o.role||null; S.steps=o.steps||{}; S.quiz=o.quiz||{}; S.watched=Array.isArray(o.watched)?o.watched:[]; if(o.name) S.learnerName=o.name; if(o.done) S.completedAt=o.done; else delete S.completedAt;
+  save(); closeAnyModal(true);
+  lastReset={backup,label:'Progress restored from your code.',scope:'restore',fresh:true};
+  if(parse().path!=='/') location.hash='#/'; else render();
 }
 
 /* ---------- VIDEO LIBRARY ---------- */
@@ -1679,12 +2322,52 @@ function refreshVideoCounts(){
 }
 
 /* ---------- other pages ---------- */
-function renderComingSoon(){
-  const open=QUESTIONS.filter(q=>q.soon);
-  return `<div class="band on-dark"><div class="page narrow">${crumbs('Not yet covered')}<div class="eyebrow">Roadmap</div><h1 class="title">Not yet covered</h1><p class="lede">Questions the training pack sets out to answer but does not yet. They are listed here so you know what is coming and are not left searching for it.</p></div></div>
-  <div class="page narrow"><div class="grid c2">${open.map(q=>`<div class="mcard soon"><div class="top"><span class="chip soon">Planned for a future version</span></div><h3>${esc(q.q)}</h3><p>${q.who?esc(q.who):'Role to be confirmed'}</p></div>`).join('')}</div>
-  <div class="callout" style="margin-top:32px">${I.info}<div>Need one of these now? <b>Email the team</b> at info@retailenergycode.co.uk and we will prioritise it. <button type="button" class="linkbtn" data-copy="info@retailenergycode.co.uk">Copy address</button></div></div></div>`;
+const QA_STATUS={answered:['done','Answered'],partial:['soon','Partly answered'],open:['soon','Open']};
+function renderQA(){
+  const cnt=k=>QA.filter(x=>x.status===k).length;
+  return `<div class="band on-dark"><div class="page">${crumbs('Q&amp;As')}<div class="eyebrow">Questions &amp; answers</div><h1 class="title">Q&amp;As</h1><p class="lede">Answers to the questions raised about the REC Portal CMS, including the ones still open, so you know what is settled and what is coming.</p>
+    <div class="chips" style="margin-top:16px"><span class="chip done">${cnt('answered')} answered</span><span class="chip soon">${cnt('partial')} partly answered</span><span class="chip soon">${cnt('open')} open</span></div></div></div>
+  <div class="page"><div class="with-toc"><div>
+    ${QA.map(g=>`<section class="section qa" id="qa-${g.id}"><div class="qah"><h2>${esc(g.title)}</h2><span class="chip ${QA_STATUS[g.status][0]}">${QA_STATUS[g.status][1]}</span></div>
+      <div class="qalist">${g.items.map(it=>`<article class="qaitem"><h3>${esc(it.q)}</h3>${it.a.map(p=>`<p>${esc(p)}</p>`).join('')}${it.link?`<a class="qalink" href="${it.link[0]}">${esc(it.link[1])} →</a>`:''}</article>`).join('')}</div></section>`).join('')}
+    <div class="callout" style="margin-top:40px">${I.info}<div>Got a question that isn’t here? <b>Email the team</b> at info@retailenergycode.co.uk and it will be added to this list. <button type="button" class="linkbtn" data-copy="info@retailenergycode.co.uk">Copy address</button></div></div>
+  </div>${tocHTML(QA.map(g=>['qa-'+g.id,g.title,g.status==='answered']))}</div></div>`;
 }
+/* ---------- DSP training catalogue (from the DSP Training Register) ---------- */
+let catFilter='all';
+const vidOf=id=>VIDEOS.find(v=>v.id===id);
+function topicState(t){ if(t.m) return 'here'; if(t.v&&!t.ext) return 'video'; if(t.v) return 'ext'; return 'gap'; }
+function catStats(c){ const ts=catTopics(c), st={here:0,video:0,ext:0,gap:0}; ts.forEach(t=>st[topicState(t)]++); st.n=ts.length; st.covered=st.here+st.video; return st; }
+const CAT_LABEL={here:['done','In this pack'],video:['vid','Video'],ext:['soon','External user view only'],gap:['gap','No material yet']};
+function catTopic(t){
+  const k=topicState(t), [cls,lab]=CAT_LABEL[k];
+  const links=[];
+  if(t.m){ const m=modOf(t.m), p=prog(t.m); links.push(`<a href="#/guide/${t.m}">Module ${m.n} · ${esc(m.title)}</a>${p.done?` <span class="muted">${p.pct}%</span>`:''}`); }
+  [t.v?{v:t.v,ext:t.ext}:null,...(t.also||[])].filter(Boolean).forEach(a=>{const v=vidOf(a.v); if(v) links.push(`<a href="#/videos#v-${v.id}">${I.play}${esc(v.title)}</a> <span class="muted">${fmtDur(v.dur)}${a.ext?' · external user’s side':''}${isWatched(v.id)?' · watched':''}</span>`);});
+  return `<li class="ctopic ${k}"><div class="ct"><b>${esc(t.t)}</b><span class="chip ${cls}">${lab}</span></div><p>${esc(t.d)}</p>${links.length?`<div class="clinks">${links.join('')}</div>`:''}</li>`;
+}
+function renderCatalogue(){
+  const uniq=new Map(); CATALOGUE.forEach(c=>catTopics(c).forEach(t=>{const k=t.t.toLowerCase(); const st=topicState(t); if(!uniq.has(k)||st==='here'||st==='video') uniq.set(k,st);})); const N=uniq.size, cov=[...uniq.values()].filter(x=>x==='here'||x==='video').length, gap=N-cov;
+  const v=ROLE_VIEWS.find(r=>r.id===S.role);
+  const card=c=>{const st=catStats(c), pct=st.n?Math.round(st.covered/st.n*100):0;
+    const tag=c.here?'<span class="chip done">This pack</span>':c.soon?'<span class="chip soon">Coming soon</span>':st.gap+st.ext===0?'<span class="chip vid">Videos for every topic</span>':st.covered?'<span class="chip soon">Partly covered</span>':'<span class="chip gap">No material yet</span>';
+    const mine=c.path&&v&&v.id===c.path;
+    return `<section class="section ccourse" id="cat-${c.id}" data-cat="${c.here?'here':c.soon?'soon':st.gap+st.ext?'gaps':'video'}"><div class="chead"><div><h2>${esc(c.title)}</h2>${c.scope?`<p class="cscope">${esc(c.scope)}</p>`:''}<p class="sub-l">${esc(c.who)}</p></div><div class="cside">${tag}${mine?'<span class="chip done">Your learning path</span>':''}</div></div>
+      ${st.n?`<div class="cbar" aria-hidden="true"><i class="h" style="flex:${st.here}"></i><i class="v" style="flex:${st.video}"></i><i class="e" style="flex:${st.ext}"></i><i class="g" style="flex:${st.gap}"></i></div><p class="cmeta">${st.n} topic${st.n>1?'s':''} · ${pct}% with training material${st.here?` · ${st.here} in this pack`:''}${st.video?` · ${st.video} with a video`:''}${st.ext?` · ${st.ext} with an external user video only`:''}${st.gap?` · ${st.gap} with nothing yet`:''}</p>`:''}
+      ${c.here&&c.path&&!mine?`<p style="margin-top:12px"><button type="button" class="btn btn-ghost btn-sm" data-role="${c.path}" data-stay="1">Use this course as my learning path</button></p>`:''}
+      ${c.parts?c.parts.map(pt=>`<h3 class="sub">${esc(pt.title)}</h3><ul class="ctopics">${pt.topics.map(catTopic).join('')}</ul>`).join(''):st.n?`<ul class="ctopics">${c.topics.map(catTopic).join('')}</ul>`:''}
+    </section>`;};
+  return `<div class="band on-dark"><div class="page">${crumbs('DSP training catalogue')}<div class="eyebrow">Resources</div><h1 class="title">DSP training catalogue</h1>
+    <p class="lede">Every DSP training course in the Digital Services training register, who it is for, and where training material exists today. Three courses are taught in this pack; the rest link to videos where there are some.</p>
+    <div class="chips" style="margin-top:16px"><span class="chip">${CATALOGUE.length} courses</span><span class="chip">${N} distinct topics</span><span class="chip done">${cov} with Code Manager material</span><span class="chip gap">${gap} still to build</span></div></div></div>
+  <div class="page"><div class="with-toc"><div>
+    <div class="callout" style="margin-top:0">${I.info}<div><b>How to read this.</b> <span class="chip done">In this pack</span> links to a module here. <span class="chip vid">Video</span> links to the video library (RECCo sign-in needed). <span class="chip soon">External user view only</span> means the only video shows the external user’s side, not the Code Manager’s. <span class="chip gap">No material yet</span> is a gap in the training.</div></div>
+    <div class="vtools"><div class="seg" role="group" aria-label="Filter courses"><button type="button" data-cf="all" aria-pressed="${catFilter==='all'}">All courses</button><button type="button" data-cf="here" aria-pressed="${catFilter==='here'}">In this pack</button><button type="button" data-cf="video" aria-pressed="${catFilter==='video'}">Fully covered by videos</button><button type="button" data-cf="gaps" aria-pressed="${catFilter==='gaps'}">With gaps</button></div></div>
+    ${CATALOGUE.map(card).join('')}
+    <p class="muted" style="font-size:13px;margin-top:32px">Source: ${esc(CATALOGUE_SOURCE)}. Wording tidied for this page.</p>
+  </div>${tocHTML(CATALOGUE.map(c=>['cat-'+c.id,c.title,c.here]))}</div></div>`;
+}
+function applyCatFilter(){ $$('.ccourse').forEach(c=>{c.hidden=!(catFilter==='all'||c.dataset.cat===catFilter);}); }
 function renderNotFound(){return `<div class="page narrow"><h1 class="title">Page not found</h1><p class="lede">That link does not exist in the training pack. <a href="#/">Go to the start</a>.</p></div>`}
 
 /* ---------- nav + top bar ---------- */
@@ -1692,11 +2375,11 @@ function renderNav(route){
   const cur=r=>route===r?'aria-current="page"':'';
   const ids=pathIds(), v=ROLE_VIEWS.find(r=>r.id===S.role), o=overall();
   const item=m=>{const p=prog(m.id), c=route.startsWith('/guide/'+m.id)?'aria-current="page"':'';
-    return `<a href="#/guide/${m.id}" ${c}><span class="num">${m.n}</span><span>${esc(m.title)}</span><span class="tail">${m.soon?'<span class="soon">Soon</span>':p.total&&p.done===p.total?`<span class="tick" aria-label="complete">${I.check}</span>`:p.done?ring(p.pct,'sm',p.pct+'% complete'):''}</span></a>`};
+    return `<a href="#/guide/${m.id}" ${c}><span class="num">${m.n}</span><span>${esc(m.title)}</span><span class="tail">${isOpt(m.id)&&!(p.total&&p.done===p.total)?'<span class="optl">Optional</span>':''}${m.soon?'<span class="soon">Soon</span>':p.total&&p.done===p.total?`<span class="tick" aria-label="complete">${I.check}</span>`:p.done?ring(p.pct,'sm',p.pct+'% complete'):''}</span></a>`};
   const others=MODULES.filter(m=>!ids.includes(m.id));
   $('#sidenav').innerHTML=`
-    <div class="me"><div class="k">${S.role?'Your path':'Get started'}</div><div class="r">${S.role?(v?esc(v.label):'All modules'):'Choose your role to build a learning path'}</div>
-      ${S.role?`${bar(o.pct)}<div class="row"><span class="tnum">${o.pct}% complete</span><span style="display:flex;gap:10px"><button type="button" class="linkbtn" data-action="change-role" style="font-size:12.5px">Change role</button>${hasProgress()?'<button type="button" class="linkbtn" data-action="reset" style="font-size:12.5px">Restart</button>':''}</span></div>`:`<a class="btn btn-green btn-sm" href="#/" data-action="focus-picker">Choose role</a>`}</div>
+    <div class="me"><div class="k">${S.role?'Your path':'Get started'}</div><div class="r">${S.role?(v?esc(v.label):'All modules'):'Choose your role to build a learning path'}</div>${v&&v.course?`<div class="crs">${esc(v.course)} course</div>`:''}
+      ${S.role?`${bar(o.pct)}<div class="row"><span class="tnum">${o.pct}% complete</span><span style="display:flex;gap:10px"><button type="button" class="linkbtn" data-action="change-role" style="font-size:12.5px">Change role</button>${hasProgress()?'<button type="button" class="linkbtn" data-action="open-progress" style="font-size:12.5px">Save</button><button type="button" class="linkbtn" data-action="reset" style="font-size:12.5px">Restart</button>':''}</span></div>`:`<a class="btn btn-green btn-sm" href="#/" data-action="focus-picker">Choose role</a>`}</div>
     <a href="#/" ${cur('/')}>Start here</a>
     <a href="#/roles" ${cur('/roles')}>Roles &amp; permissions</a>
     <div class="grp">${S.role&&S.role!=='all'?'Your modules':'Modules'}</div>
@@ -1704,7 +2387,9 @@ function renderNav(route){
     ${S.role&&S.role!=='all'&&others.length?`<div class="grp">Other modules</div><div class="other">${others.map(item).join('')}</div>`:''}
     <div class="grp">More</div>
     <a href="#/videos" ${cur('/videos')}><span>Video library</span><span class="tail"><span class="vbadge tnum">${S.watched.filter(id=>VIDEOS.some(v=>v.id===id)).length}/${VIDEOS.length}</span></span></a>
-    <a href="#/coming-soon" ${cur('/coming-soon')}>Not yet covered</a>
+    <a href="#/qa" ${cur('/qa')}>Q&amp;As</a>
+    <a href="#/catalogue" ${cur('/catalogue')}>DSP training catalogue</a>
+    <button type="button" class="navbtn" data-action="open-cert"><span>Certificate</span><span class="tail">${pathComplete()?'<span class="tick" aria-label="ready">'+I.check+'</span>':'<span class="lockic" aria-label="locked">'+I.lock+'</span>'}</span></button>
     <a href="https://recco-brand.figma.site/" target="_blank" rel="noopener">Brand Hub ↗</a>`;
 }
 function renderTop(){
@@ -1713,6 +2398,7 @@ function renderTop(){
   t.hidden=!S.role;
 }
 function refresh(){
+  checkCompletion();
   renderNav(parse().path); renderTop();
   $$('[data-ring]').forEach(el=>{const p=prog(el.dataset.ring); el.innerHTML=ring(p.pct,'lg');});
   $$('[data-bar]').forEach(el=>{const p=prog(el.dataset.bar); el.innerHTML=bar(p.pct);});
@@ -1725,22 +2411,24 @@ function refresh(){
 function parse(){ const h=location.hash.replace(/^#/,'')||'/'; const [path,anchor]=h.split('#'); return {path:path||'/',anchor}; }
 function render(){
   const {path,anchor}=parse(), main=$('#main');
-  let html; W=null; Q=null;
+  let html; W=null; Q=null; closeAnyModal(true);
   const gm=path.match(/^\/guide\/([\w-]+)(\/walk)?$/);
   if(path==='/') html=renderHome();
   else if(path==='/roles') html=renderRoles();
   else if(gm) html=gm[2]?renderWalk(gm[1],anchor):renderGuide(gm[1]);
-  else if(path==='/coming-soon') html=renderComingSoon();
+  else if(path==='/qa'||path==='/coming-soon') html=renderQA();
   else if(path==='/videos') html=renderVideos();
+  else if(path==='/catalogue') html=renderCatalogue();
   else html=renderNotFound();
   let banner=''; if(lastReset){ if(lastReset.fresh){ lastReset.fresh=false; banner=resetBanner(); } else lastReset=null; }
   main.innerHTML=banner+html;
   renderNav(path); renderTop(); closeMenu();
   const g=gm&&GUIDES[gm[1]];
-  document.title=(path==='/roles'?'Roles & permissions — ':g?(gm[2]?'Walkthrough: ':'')+g.title+' — ':path==='/coming-soon'?'Not yet covered — ':path==='/videos'?'Video library — ':'')+'REC Portal Content Training';
+  document.title=(path==='/roles'?'Roles & permissions — ':g?(gm[2]?'Walkthrough: ':'')+g.title+' — ':(path==='/qa'||path==='/coming-soon')?'Q&As — ':path==='/videos'?'Video library — ':path==='/catalogue'?'DSP training catalogue — ':'')+'REC Portal Content Training';
   if(gm&&!gm[2]&&QUIZZES[gm[1]]&&!GUIDES[gm[1]].soon) startQuiz(gm[1],false);
   if(path==='/roles') applyExplore();
   if(path==='/videos') applyVideoFilter();
+  if(path==='/catalogue') applyCatFilter();
   if(W){ window.scrollTo(0,0); $('#wh')?.focus({preventScroll:true}); }
   else if(anchor){ const el=document.getElementById(anchor); if(el){ el.scrollIntoView({block:'start'}); el.setAttribute('tabindex','-1'); el.focus({preventScroll:true}); } }
   else { window.scrollTo(0,0); main.focus({preventScroll:true}); }
@@ -1765,11 +2453,24 @@ document.addEventListener('click',e=>{
     if(a==='change-role'){ S.role=null; save(); if(parse().path==='/') render(); else location.hash='#/'; setTimeout(()=>$('#choose .opt')?.focus(),50); }
     if(a==='focus-picker'){ setTimeout(()=>$('#choose .opt')?.focus(),60); }
     if(a==='reset'){ openReset('all'); }
+    if(a==='close-modal'){ closeAnyModal(act.tagName==='A'); }
+    if(a==='open-amap'){ openAccessMap(); }
+    if(a==='amap-prev'){ amapStep(-1); }
+    if(a==='amap-next'){ amapStep(1); }
+    if(a==='open-cert'){ openCertificate(); }
+    if(a==='cert-pdf'){ certPDF(); }
+    if(a==='cert-png'){ drawCert().then(()=>certBlob(async b=>{ if(await saveBlob(b,certFile('png'))) toast('Certificate image downloaded'); })); }
+    if(a==='open-progress'){ openProgress(act.dataset.tab); }
+    if(a==='prog-copy'){ const v=$('#progCode').value; try{ navigator.clipboard.writeText(v).then(()=>toast('Progress code copied'),()=>{ $('#progCode').select(); toast('Code selected. Press Ctrl+C or Cmd+C to copy'); }); }catch(err){ $('#progCode').select(); toast('Code selected. Press Ctrl+C or Cmd+C to copy'); } }
+    if(a==='prog-file'){ saveBlob(new Blob([progressCode()],{type:'text/plain'}),'rec-portal-training-progress.txt').then(ok=>{ if(ok) toast('Progress file downloaded'); }); }
+    if(a==='prog-restore'){ restoreFromCode(); }
     if(a==='reset-module'){ openReset('module',act.dataset.mod); }
     if(a==='reset-cancel'){ closeReset(); }
     if(a==='reset-confirm'){ doReset(); }
     if(a==='reset-undo'){ undoReset(); }
     return; }
+  const am=t.closest('[data-amap]');
+  if(am){ exploreRole=am.dataset.amap; applyExplore(); return; }
   const ex=t.closest('[data-explore]');
   if(ex){ exploreRole=ex.dataset.explore; applyExplore(); if(ex.dataset.scroll) document.getElementById(ex.dataset.scroll)?.scrollIntoView({block:'start'}); return; }
   const nd=t.closest('[data-need]');
@@ -1782,6 +2483,8 @@ document.addEventListener('click',e=>{
   if(vw){ const id=vw.dataset.watch, on=!isWatched(id); S.watched=on?[...S.watched,id]:S.watched.filter(x=>x!==id); save();
     vw.setAttribute('aria-pressed',on); vw.querySelector('.lbl').textContent=on?'Watched':'Mark watched'; vw.setAttribute('aria-label',(on?'Watched: ':'Mark as watched: ')+VIDEOS.find(v=>v.id===id).title);
     refreshVideoCounts(); renderNav(parse().path); toast(on?'Marked as watched':'Unmarked'); return; }
+  const cf=t.closest('[data-cf]');
+  if(cf){ catFilter=cf.dataset.cf; $$('[data-cf]').forEach(b=>b.setAttribute('aria-pressed',b===cf)); applyCatFilter(); return; }
   const vf=t.closest('[data-vf]');
   if(vf){ vFilter=vf.dataset.vf; $$('[data-vf]').forEach(b=>b.setAttribute('aria-pressed',b===vf)); applyVideoFilter(); return; }
   const qa=t.closest('[data-quiz]');
@@ -1800,18 +2503,24 @@ document.addEventListener('click',e=>{
     if(el){ e.preventDefault(); el.scrollIntoView({block:'start'}); el.setAttribute('tabindex','-1'); el.focus({preventScroll:true}); history.replaceState(null,'','#'+parse().path+'#'+id); } }
 });
 document.addEventListener('change',e=>{
+  if(e.target.id==='amapCompare'){ amapCompare=e.target.value; paintAccessMap(); return; }
+  if(e.target.id==='certName'){ return; }
   if(e.target.name==='qo'&&Q&&!Q.checked){ Q.ans[Q.i]=+e.target.value; const b=$('[data-quiz=check]'); if(b) b.disabled=false; }
 });
 document.addEventListener('input',e=>{
+  if(e.target.id==='certName'){ S.learnerName=e.target.value.slice(0,80); save(); clearTimeout(drawCert._t); drawCert._t=setTimeout(drawCert,150); return; }
+  if(e.target.id==='progIn'){ const er=$('#progErr'); if(er) er.hidden=true; }
   if(e.target.id==='vfilter'){ vQuery=e.target.value.trim().toLowerCase(); applyVideoFilter(); return; }
   if(e.target.id==='cfilter'){ cFilter=e.target.value.trim().toLowerCase(); const g=GUIDES.components; const tmp=document.createElement('div'); tmp.innerHTML=chooserPicker(g);
     $('#needList').innerHTML=tmp.querySelector('#needList').innerHTML; $('#cdetail').innerHTML=tmp.querySelector('#cdetail').innerHTML; }
 });
 document.addEventListener('keydown',e=>{
   const typing=/INPUT|TEXTAREA|SELECT/.test(document.activeElement?.tagName);
-  if($('#resetModal')){
-    if(e.key==='Escape'){ e.preventDefault(); closeReset(); return; }
-    if(e.key==='Tab'){ const f=[...$('#resetModal').querySelectorAll('button,input')]; const i=f.indexOf(document.activeElement); if(e.shiftKey&&i<=0){e.preventDefault();f[f.length-1].focus();} else if(!e.shiftKey&&i===f.length-1){e.preventDefault();f[0].focus();} }
+  const md=document.querySelector('.modal-back');
+  if(md){
+    if(e.key==='Escape'){ e.preventDefault(); closeAnyModal(); return; }
+    if(e.key==='Tab'){ const f=[...md.querySelectorAll('button:not([disabled]),input,select,textarea,a[href]')].filter(x=>x.offsetParent!==null); const i=f.indexOf(document.activeElement); if(e.shiftKey&&i<=0){e.preventDefault();f[f.length-1].focus();} else if(!e.shiftKey&&i===f.length-1){e.preventDefault();f[0].focus();} }
+    if(md.id==='amapModal'&&(e.key==='ArrowDown'||e.key==='ArrowUp')&&!/SELECT/.test(document.activeElement?.tagName)){ e.preventDefault(); amapStep(e.key==='ArrowDown'?1:-1); }
     return;
   }
   if(e.key==='Escape'){ closeMenu(); closeSearch(); }
@@ -1862,7 +2571,12 @@ const INDEX=[];
     g.chooser?.forEach(r=>INDEX.push({t:r[1],s:`Component · ${r[0]} · ${r[4]}`,to:`#/guide/${id}#chooser`}));
     g.tricksList?.forEach(t=>INDEX.push({t:t.what,s:`Useful trick · ${t.area}`,to:`#/guide/${id}#list`,body:t.how}));
   });
-  QUESTIONS.forEach(q=>INDEX.push({t:q.q,s:q.soon?'Not yet covered':q.who,to:q.to}));
+  QUESTIONS.forEach(q=>INDEX.push({t:q.q,s:q.soon?'Open question':q.partial?'Partly answered':q.who,to:q.to}));
+  QA.forEach(g=>g.items.forEach(it=>INDEX.push({t:it.q,s:`Q&A · ${g.title}`,to:`#/qa#qa-${g.id}`,body:it.a.join(' ')})));
+  INDEX.push({t:'Live component list',s:`${COMPONENT_LIST.env} · every component with its image size`,to:'#/guide/components#live'});
+  COMPONENT_LIST.items.forEach(c=>INDEX.push({t:c.name+' component',s:`Live component list${c.size?' · '+c.size+'px':''}`,to:'#/guide/components#live',body:c.note}));
+  INDEX.push({t:'DSP training catalogue',s:`${CATALOGUE.length} DSP courses, what each covers and where training exists`,to:'#/catalogue'});
+  CATALOGUE.forEach(c=>INDEX.push({t:c.title,s:`DSP course · ${c.here?'covered in this pack':c.soon?'coming soon':catStats(c).gap?catStats(c).gap+' topics without material':'videos available'}`,to:`#/catalogue#cat-${c.id}`,body:c.who+' '+catTopics(c).map(t=>t.t+' '+t.d).join(' ')}));
   INDEX.push({t:'Video library',s:`${VIDEOS.length} videos · party management, service desk, external users`,to:'#/videos'});
   VIDEOS.forEach(v=>INDEX.push({t:v.title,s:`Video · ${seriesOf(v.series).title} · ${fmtDur(v.dur)}`,to:`#/videos#v-${v.id}`,body:v.summary+' '+v.learn.join(' ')+' '+v.chapters.map(c=>c[1]).join(' ')}));
 })();
